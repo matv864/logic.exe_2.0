@@ -29,13 +29,17 @@ def make_menu_buttons():
 def make_main_surface():
     main_surface = pygame.Surface(window.size_screen)
     main_surface.fill("Blue")
-    return main_surface, (0, 0)
+
+    menu_buttons, coords_menu_buttons = make_menu_buttons()
+    main_surface.blit(menu_buttons, coords_menu_buttons)
+
+    return main_surface
     # print(window.size_screen)
 
 
 def launch():
-    window.insert_surface(make_main_surface())
-    window.insert_surface(make_menu_buttons())
+    window.set_new_surface(make_main_surface(), None)
+    
 
 
 
