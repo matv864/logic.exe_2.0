@@ -1,7 +1,6 @@
-from manager import launch_game
+import asyncio
 
-
+from src.flappy import Flappy
 
 if __name__ == "__main__":
-    launch_game()
-
+    asyncio.run(Flappy().start())
