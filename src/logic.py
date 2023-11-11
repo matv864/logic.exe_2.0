@@ -6,7 +6,7 @@ from pygame.locals import K_ESCAPE, K_SPACE, K_UP, KEYDOWN, QUIT
 
 from .entities import (
     Background,
-    Floor,
+    Leverage,
     GameOver,
     Pipes,
     Player,
@@ -14,10 +14,10 @@ from .entities import (
     Score,
     WelcomeMessage,
 )
-from .utils import GameConfig, Images, Sounds, Window
+from .utils import GameConfig, Images, Sounds, Window, Level
 
 
-class Flappy:
+class Logic:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("LOGIC2.EXE")
@@ -25,32 +25,26 @@ class Flappy:
         screen = pygame.display.set_mode((window.width, window.height))
         images = Images()
 
-        self.config = GameConfig(
-            screen=screen,
-            clock=pygame.time.Clock(),
-            fps=30,
-            window=window,
-            images=images,
-            sounds=Sounds(),
-        )
-
     async def start(self):
         while True:
-            self.background = Background(self.config)
-            self.floor = Floor(self.config)
-            self.player = Player(self.config)
-            self.welcome_message = WelcomeMessage(self.config)
-            self.game_over_message = GameOver(self.config)
-            self.pipes = Pipes(self.config)
-            self.score = Score(self.config)
-            await self.splash()
-            await self.play()
-            await self.game_over()
+            levels = Level()
+
+            for _ in range(levels.counter_levels):
+                self.level_config = levels.get_next_level_config()
+
+                self.background = Background()
+                self.leverage = Leverage(self.level_config)
+
+                self.player = Player()
+
+                await self.splash()
+                await self.play()
+
+                if (await self.game_over()):
+                    break
 
     async def splash(self):
         """Shows welcome splash screen animation of flappy bird"""
-
-        self.player.set_mode(PlayerMode.SHM)
 
         while True:
             for event in pygame.event.get():
@@ -75,6 +69,7 @@ class Flappy:
             sys.exit()
 
     def is_tap_event(self, event):
+        # here we need to check click
         m_left, _, _ = pygame.mouse.get_pressed()
         space_or_up = event.type == KEYDOWN and (
             event.key == K_SPACE or event.key == K_UP
@@ -83,8 +78,6 @@ class Flappy:
         return m_left or space_or_up or screen_tap
 
     async def play(self):
-        self.score.reset()
-        self.player.set_mode(PlayerMode.NORMAL)
 
         while True:
             if self.player.collided(self.pipes, self.floor):

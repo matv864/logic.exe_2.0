@@ -1,6 +1,6 @@
 import asyncio
 
-from src.logic import Flappy
+from src.logic import Logic
 
 if __name__ == "__main__":
-    asyncio.run(Flappy().start())
+    asyncio.run(Logic().start())
