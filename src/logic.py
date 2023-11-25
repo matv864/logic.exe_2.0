@@ -1,128 +1,69 @@
+# need to add mouse click how active lever
+# need to add check to win or new level
+
+
 import asyncio
 import sys
 
 import pygame
-from pygame.locals import K_ESCAPE, K_SPACE, K_UP, KEYDOWN, QUIT
+from pygame.locals import QUIT, K_DOWN, K_UP, K_w, K_s, K_RETURN, K_SPACE
 
-from .entities import (
-    Background,
-    Leverage,
-    GameOver,
-    Pipes,
-    Player,
-    PlayerMode,
-    Score,
-    WelcomeMessage,
-)
-from .utils import GameConfig, Images, Sounds, Window, Level
+from .utils import GameConfig
+from .entities import Background, Player
+# from .utils import Window, Level
 
 
 class Logic:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("LOGIC2.EXE")
-        window = Window(288, 512)
-        screen = pygame.display.set_mode((window.width, window.height))
-        images = Images()
+        size_of_screen = (1000, 500)
+        # window = Window(288, 512)
+        screen = pygame.display.set_mode(size_of_screen)
+        # images = Images()
+        self.config = GameConfig(
+            screen=screen,
+            clock=pygame.time.Clock(),
+            size_of_screen = size_of_screen
+        )
 
-    async def start(self):
-        while True:
-            levels = Level()
+    def start(self):
+        self.background = Background(self.config)
+        self.player = Player(self.config)
+        self.play()
 
-            for _ in range(levels.counter_levels):
-                self.level_config = levels.get_next_level_config()
 
-                self.background = Background()
-                self.leverage = Leverage(self.level_config)
 
-                self.player = Player()
-
-                await self.splash()
-                await self.play()
-
-                if (await self.game_over()):
-                    break
-
-    async def splash(self):
-        """Shows welcome splash screen animation of flappy bird"""
-
+    def play(self):
         while True:
             for event in pygame.event.get():
                 self.check_quit_event(event)
-                if self.is_tap_event(event):
-                    return
-
-            self.background.tick()
-            self.floor.tick()
-            self.player.tick()
-            self.welcome_message.tick()
-
+                if event.type == pygame.KEYDOWN:
+                    self.handle_up_down(event)
+                    self.handle_enter_click(event)
+            self.background.draw()
+            self.player.draw()
             pygame.display.update()
-            await asyncio.sleep(0)
-            self.config.tick()
+            # need to add check to win or new level
+
+
+
+    def handle_up_down(self, event):
+        if event.key in [K_UP, K_w]:
+            self.player.move_up()
+            return
+        if event.key in [K_DOWN, K_s]:
+            self.player.move_down()
+            return
+
+    def handle_enter_click(self, event):
+        # need to add mouse click how active lever
+        if event.key in [K_RETURN, K_SPACE]:
+            self.player.click()
+            return
+
 
     def check_quit_event(self, event):
-        if event.type == QUIT or (
-            event.type == KEYDOWN and event.key == K_ESCAPE
-        ):
+        if event.type == QUIT:
             pygame.quit()
             sys.exit()
-
-    def is_tap_event(self, event):
-        # here we need to check click
-        m_left, _, _ = pygame.mouse.get_pressed()
-        space_or_up = event.type == KEYDOWN and (
-            event.key == K_SPACE or event.key == K_UP
-        )
-        screen_tap = event.type == pygame.FINGERDOWN
-        return m_left or space_or_up or screen_tap
-
-    async def play(self):
-
-        while True:
-            if self.player.collided(self.pipes, self.floor):
-                return
-
-            for i, pipe in enumerate(self.pipes.upper):
-                if self.player.crossed(pipe):
-                    self.score.add()
-
-            for event in pygame.event.get():
-                self.check_quit_event(event)
-                if self.is_tap_event(event):
-                    self.player.flap()
-
-            self.background.tick()
-            self.floor.tick()
-            self.pipes.tick()
-            self.score.tick()
-            self.player.tick()
-
-            pygame.display.update()
-            await asyncio.sleep(0)
-            self.config.tick()
-
-    async def game_over(self):
-        """crashes the player down and shows gameover image"""
-
-        self.player.set_mode(PlayerMode.CRASH)
-        self.pipes.stop()
-        self.floor.stop()
-
-        while True:
-            for event in pygame.event.get():
-                self.check_quit_event(event)
-                if self.is_tap_event(event):
-                    if self.player.y + self.player.h >= self.floor.y - 1:
-                        return
-
-            self.background.tick()
-            self.floor.tick()
-            self.pipes.tick()
-            self.score.tick()
-            self.player.tick()
-            self.game_over_message.tick()
-
-            self.config.tick()
-            pygame.display.update()
-            await asyncio.sleep(0)
