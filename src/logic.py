@@ -72,9 +72,9 @@ class Logic:
         # need to add mouse click how active lever
         if event.key in [K_RETURN, K_SPACE]:
             id_activated_lever = self.player.activate()
-            if id_activated_lever:
-                id_activated_platform = self.schema.activate_this(id_activated_lever)
-                if id_activated_platform:
+            if not (id_activated_lever is None):
+                id_activated_platform = self.schema.activate_lever(id_activated_lever)
+                if not (id_activated_platform is None):
                     self.platform.activate_this(id_activated_platform)
         
     def check_to_win(self):

@@ -14,8 +14,12 @@ class Schema:
         main_surf.fill((0, 0, 0))
         self.game_config.screen.blit(main_surf, self.game_config.schema_module_location)
 
-    def activate_this(self, object_id):
-        print(f"activate {object_id}")
+    def activate_lever(self, lever_id):
+        last_state = self.game_config.level_config["levers"][lever_id]["activated"]
+        self.game_config.level_config["levers"][lever_id]["activated"] = not(last_state)
+
+        need_to_turn = self.game_config.level_config["levers"][lever_id]["turn_object"]
+        print(f"need to activate {need_to_turn}")
 
 
 

@@ -4,35 +4,43 @@
     [
         {
             "object_id": 1,
-            "y": 20
+            "y": 20,
+            "activated": false,
+            "turn_object": -1
         },
         {
             "object_id": 2,
-            "y": 40
+            "y": 40,
+            "activated": false,
+            "turn_object": -2
         },
         {
             "object_id": 3,
-            "y": 60
+            "y": 60,
+            "activated": false,
+            "turn_object": -3
         }
     ],
 
     "platforms":
-    [
-        {
-            "object_id": 0,
-            "y": "vh"
+    {
+        "4": {
+            "object_id": 4,
+            "y": 30,
+            "activated": false
         },
-        {
-            "object_id": 0,
-            "y": "vh"
+        "5": {
+            "object_id": 5,
+            "y": 60,
+            "activated": false
         }
-    ],
+    },
     
     "connections":
     [
         {
-            "start_id": 0,
-            "end_id": 0
+            "start_id": 1,
+            "end_id": 4
         }
     ],
     "node_connections":
