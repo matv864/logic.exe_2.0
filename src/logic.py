@@ -9,7 +9,7 @@ import pygame
 from pygame.locals import QUIT, K_DOWN, K_UP, K_w, K_s, K_RETURN, K_SPACE
 
 from .utils import GameConfig
-from .entities import Background, Player
+from .entities import Background, Player, Score, Schema, Platform
 # from .utils import Window, Level
 
 
@@ -30,6 +30,9 @@ class Logic:
     def start(self):
         self.background = Background(self.config)
         self.player = Player(self.config)
+        self.schema = Schema(self.config)
+        self.platform = Platform(self.config)
+        self.score = Score(self.config)
         self.play()
 
 
@@ -43,6 +46,10 @@ class Logic:
                     self.handle_enter_click(event)
             self.background.draw()
             self.player.draw()
+            self.schema.draw()
+            self.platform.draw()
+            self.score.draw()
+            
             pygame.display.update()
             # need to add check to win or new level
 
