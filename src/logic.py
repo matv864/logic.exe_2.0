@@ -54,13 +54,8 @@ class Logic:
             pygame.display.update()
             # need to add check to win or new level
             # 1 - win, 0 - lose
-            temp_res = self.check_to_win()
-            if not(temp_res is None):
-                if temp_res:
-                    print("win")
-                else:
-                    print("lose")
-
+            if self.check_to_win():
+                print("win")
 
 
     def handle_up_down(self, event):
@@ -83,8 +78,9 @@ class Logic:
                     self.platform.activate_this(id_activated_platform)
         
     def check_to_win(self):
-        # 1 - win, 0 - lose
-        return None
+        if self.config.level_config:
+            return False
+        return True
 
 
     def check_quit_event(self, event):

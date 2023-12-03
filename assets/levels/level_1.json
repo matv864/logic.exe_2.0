@@ -1,37 +1,33 @@
 
 {
-    "platforms":
-    {
-        "count": 2,
-        "1":
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            },
-        "2":
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            }
-    },
     "levers":
-    {
-        "count": 2,
-        "1":
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            },
-        "2":
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            }
-    },
+    [
+        {
+            "object_id": 1,
+            "y": 20
+        },
+        {
+            "object_id": 2,
+            "y": 40
+        },
+        {
+            "object_id": 3,
+            "y": 60
+        }
+    ],
+
+    "platforms":
+    [
+        {
+            "object_id": 0,
+            "y": "vh"
+        },
+        {
+            "object_id": 0,
+            "y": "vh"
+        }
+    ],
+    
     "connections":
     [
         {

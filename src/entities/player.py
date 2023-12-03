@@ -8,11 +8,11 @@ class Player:
     def __init__(self, config) -> None:
         self.game_config = config
 
-        self.vh = self.game_config.player_module_size[0] / 100
-        self.vw = self.game_config.player_module_size[1] / 100
+        self.vw = self.game_config.player_module_size[0] / 100
+        self.vh = self.game_config.player_module_size[1] / 100
 
         self.player_pos = 0
-        self.variable_positions = [0, 50, 100, 150, 200, 400, 600]
+        self.variable_positions = self.game_config.level_config["levers"]
 
     def draw(self) -> None:
         # rotated_image = pygame.transform.rotate(self.image, self.rot)
@@ -22,7 +22,7 @@ class Player:
 
         surf2 = pygame.Surface((50, 50))
         surf2.fill((255, 255, 255))
-        main_surf.blit(surf2, (self.game_config.player_module_size[0]/3, self.variable_positions[self.player_pos])) 
+        main_surf.blit(surf2, (self.game_config.player_module_size[0]/3, self.variable_positions[self.player_pos]["y"]*self.vh)) 
         # print("-")
         self.game_config.screen.blit(main_surf, self.game_config.player_module_location)
 
@@ -33,8 +33,8 @@ class Player:
         self.player_pos = min(len(self.variable_positions)-1, self.player_pos + 1)
 
     def activate(self):
-        print("it was click")
-        return 0
+        object_id_now = self.variable_positions[self.player_pos]["object_id"]
+        return object_id_now
     
 
     '''
