@@ -5,8 +5,8 @@ class Schema:
     def __init__(self, config):
         self.game_config = config
 
-        vw = self.game_config.schema_module_size[0] / 100
-        vh = self.game_config.schema_module_size[1] / 100
+        self.vw = self.game_config.schema_module_size[0] / 100
+        self.vh = self.game_config.schema_module_size[1] / 100
 
     def draw(self) -> None:
         # rotated_image = pygame.transform.rotate(self.image, self.rot)
@@ -16,6 +16,21 @@ class Schema:
 
     def activate_this(self, object_id):
         print(f"activate {object_id}")
+
+
+
+    '''
+        так, тз этого модуля
+        надо прописать отображение логической схемы 
+        что нужно для схемы:
+            скомуниздить конфиг левела и отрисовать все элементы
+            проходить всю логику этой схемы
+        (систему парсинга json с левелом я ещё не придумал)
+        (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh)
+        
+    '''
+
+
 
 
 

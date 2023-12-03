@@ -3,8 +3,8 @@ import pygame
 class Platform:
     def __init__(self, config):
         self.game_config = config
-        vw = self.game_config.platform_module_size[0] / 100
-        vh = self.game_config.platform_module_size[1] / 100
+        self.vw = self.game_config.platform_module_size[0] / 100
+        self.vh = self.game_config.platform_module_size[1] / 100
 
 
     def draw(self) -> None:
@@ -17,4 +17,18 @@ class Platform:
     def activate_this(self, object_id):
         print(f"activate {object_id}")
 
-    
+
+    '''
+        так, тз этого модуля
+        надо прописать платформы и падение кристалика (аккуратное/неаккуратное)
+        что нужно для платформ:
+            скомуниздить конфиг левела и отрисовать платформы
+            активировать платформы по запросу
+            моделировать падение
+        (систему парсинга json с левелом я ещё не придумал)
+        (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh)
+        
+    '''
+
+
+
