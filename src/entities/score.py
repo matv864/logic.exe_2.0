@@ -1,10 +1,14 @@
 import pygame
-
+import time
 
 
 class Score:
     def __init__(self, config):
         self.game_config = config
+
+        vw = self.game_config.platform_module_size[0] / 100
+        vh = self.game_config.platform_module_size[1] / 100
+
         self.score = 0
         self.lifes = 0
         self.level = 0

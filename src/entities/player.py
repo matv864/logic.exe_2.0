@@ -8,6 +8,9 @@ class Player:
     def __init__(self, config) -> None:
         self.game_config = config
 
+        vw = self.game_config.player_module_size[0] / 100
+        vh = self.game_config.player_module_size[1] / 100
+
         self.player_pos = 0
         self.variable_positions = [0, 50, 100, 150, 200, 400, 600]
 
@@ -28,6 +31,7 @@ class Player:
     def move_down(self):
         self.player_pos = min(len(self.variable_positions)-1, self.player_pos + 1)
 
-    def click(self):
+    def activate(self):
         print("it was click")
+        return 0
 

@@ -1,4 +1,5 @@
 import pygame
+import time
 
 
 class GameConfig:
@@ -6,6 +7,8 @@ class GameConfig:
         self.screen = screen
         self.clock = clock
         self.fps = 1
+
+        self.start_time = time.time()
 
         self.player_module_size = (0, 0)
         self.player_module_location = (0, 0)

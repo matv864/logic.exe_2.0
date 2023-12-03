@@ -44,6 +44,7 @@ class Logic:
                 if event.type == pygame.KEYDOWN:
                     self.handle_up_down(event)
                     self.handle_enter_click(event)
+
             self.background.draw()
             self.player.draw()
             self.schema.draw()
@@ -52,22 +53,38 @@ class Logic:
             
             pygame.display.update()
             # need to add check to win or new level
+            # 1 - win, 0 - lose
+            temp_res = self.check_to_win()
+            if not(temp_res is None):
+                if temp_res:
+                    print("win")
+                else:
+                    print("lose")
 
 
 
     def handle_up_down(self, event):
-        if event.key in [K_UP, K_w]:
+        # print(event.key)
+        # глюки с русскоязычной раскладкой и стрелочками нампада
+        if event.key in [K_UP, K_w, 1094, 1073741920]:
             self.player.move_up()
             return
-        if event.key in [K_DOWN, K_s]:
+        if event.key in [K_DOWN, K_s, 1099, 1073741914]:
             self.player.move_down()
             return
 
     def handle_enter_click(self, event):
         # need to add mouse click how active lever
         if event.key in [K_RETURN, K_SPACE]:
-            self.player.click()
-            return
+            id_activated_lever = self.player.activate()
+            if id_activated_lever:
+                id_activated_platform = self.schema.activate_this(id_activated_lever)
+                if id_activated_platform:
+                    self.platform.activate_this(id_activated_platform)
+        
+    def check_to_win(self):
+        # 1 - win, 0 - lose
+        return None
 
 
     def check_quit_event(self, event):

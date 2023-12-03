@@ -1,0 +1,84 @@
+
+{
+    "platforms":
+    {
+        "count": 2,
+        "1":
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            },
+        "2":
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            }
+    },
+    "levers":
+    {
+        "count": 2,
+        "1":
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            },
+        "2":
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            }
+    },
+    "connections":
+    [
+        {
+            "start_id": 0,
+            "end_id": 0
+        }
+    ],
+    "node_connections":
+    [
+        {
+            "object_id": 0,
+            "x": "vw",
+            "y": "vh"
+        }
+    ],
+    "logic":{
+        "xor":
+        [
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            }
+        ],
+        "or":
+        [
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            }
+        ],
+        "and":
+        [
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            }
+        ],
+        "not":
+        [
+            {
+                "object_id": 0,
+                "x": "vw",
+                "y": "vh"
+            }
+        ]
+    }
+}
