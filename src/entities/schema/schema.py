@@ -1,8 +1,9 @@
 import pygame
 
 from .logic_side import Logic_side
+from .paint_side import Paint_side
 
-class Schema(Logic_side):
+class Schema:
     def __init__(self, config):
         self.game_config = config
 
@@ -23,6 +24,7 @@ class Schema(Logic_side):
         # rotated_image = pygame.transform.rotate(self.image, self.rot)
         main_surf = pygame.Surface(self.game_config.schema_module_size)
         main_surf.fill((0, 0, 0))
+        Paint_side.paint_elements(main_surf, self.vw, self.vh, self.logic_objects)
         self.game_config.screen.blit(main_surf, self.game_config.schema_module_location)
 
 
