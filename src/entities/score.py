@@ -10,13 +10,9 @@ class Score:
         # print(self.game_config.platform_module_size)
         self.vw = self.game_config.score_module_size[0] / 100
         self.vh = self.game_config.score_module_size[1] / 100
-        
 
         self.score = 0
-        self.lifes = 0
-        self.level = 0
-        self.time = 0
-
+        self.start_score = 1000
 
         
 
@@ -31,21 +27,35 @@ class Score:
         main_surf = pygame.Surface(self.game_config.score_module_size)
         main_surf.fill((40, 70, 255))
 
-
-
-        font = pygame.font.SysFont(None, 24)
-        img = font.render(str(self.time_from_start), True, "red")
-        main_surf.blit(img, (20*self.vw, 50*self.vh))
-
-
+        self.score = max(0, self.start_score - self.time_from_start)
+        self.draw_score(main_surf)
 
         self.game_config.screen.blit(main_surf, self.game_config.score_module_location)
 
+
+
+
+    def draw_score(self, main_surf):
+        # self.game_config.level
+        # self.game_config.lifes
+        # self.score
+
+        font = pygame.font.SysFont(None, 24)
+        img = font.render(f"level: {self.game_config.level}", True, "red")
+        main_surf.blit(img, (20*self.vw, 50*self.vh))
+
+        font = pygame.font.SysFont(None, 24)
+        img = font.render(f"lifes: {self.game_config.lifes}", True, "red")
+        main_surf.blit(img, (30*self.vw, 50*self.vh))
+
+        font = pygame.font.SysFont(None, 24)
+        img = font.render(f"time: {self.score}", True, "red")
+        main_surf.blit(img, (40*self.vw, 50*self.vh))
+
+
         '''
         так, тз этого модуля
-        надо прописать скорборд 
-        все значения будут лежать в главном конфиге
-        с каждой прорисовкой экрана отрабатывает функция draw
+        надо красиво отверстать скор борд
         (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh)
         
         '''
