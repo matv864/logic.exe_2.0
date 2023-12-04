@@ -42,6 +42,30 @@
             "result_signal": false
         },
         "1": {
+            "type": "node",
+            "x": 20,
+            "y": 20,
+            "turn_object": 2,
+            "activated": {},
+            "result_signal": false
+        },
+        "2": {
+            "type": "splitter",
+            "x": 20,
+            "y": 20,
+            "turn_object": [3, 4],
+            "activated": {},
+            "result_signal": false
+        },
+        "3": {
+            "type": "not",
+            "x": 20,
+            "y": 20,
+            "turn_object": -1,
+            "activated": {},
+            "result_signal": false
+        },
+        "4": {
             "type": "not",
             "x": 20,
             "y": 20,

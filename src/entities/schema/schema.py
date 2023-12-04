@@ -1,10 +1,9 @@
 import pygame
-
-
 from pprint import pprint
 
+from .logic_side import Logic_side
 
-class Schema:
+class Schema(Logic_side):
     def __init__(self, config):
         self.game_config = config
 
@@ -51,29 +50,21 @@ class Schema:
         
 
     def make_schema(self):
-        random_id = 100
+        random_id = 0
         while self._queue_objects:
             obj = self._queue_objects.pop()
             match obj["type"]:
                 case "not":
-                    if len(obj["activated"]):
-                        obj["result_signal"] = False
-                        # print("---111111-----", obj)
-                    else:
-                        obj["result_signal"] = True
-                        # print("---0000000-----", obj)
+                    Logic_side.func_not(self.logic_objects, obj, self._queue_objects, random_id)
+                case "splitter":
+                    Logic_side.func_splitter(self.logic_objects, obj, self._queue_objects, random_id)
+                case "node":
+                    Logic_side.func_node(self.logic_objects, obj, self._queue_objects, random_id)
                 case _:
                     print("no this type", obj["type"])
-            obj_to_activate = self.logic_objects.get(str(obj["turn_object"]))
-            if obj_to_activate:
-                if obj["result_signal"]:
-                    obj_to_activate["activated"][str(random_id)] = True
-                    random_id += 1
-                self._queue_objects.append(obj_to_activate)
+            random_id += 2
             print(obj)
-        # pprint(self.logic_objects["1"])
-        # print("\n"*2)
-            
+        print("\n"*2)
 
 
                 
