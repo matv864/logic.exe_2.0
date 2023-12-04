@@ -1,5 +1,4 @@
 import pygame
-from pprint import pprint
 
 from .logic_side import Logic_side
 
@@ -45,12 +44,13 @@ class Schema(Logic_side):
                     random_id += 1
                 self._queue_objects.append(obj_to_activate)
             else:
-                print("NO THIS ID", lever["turn_object"])
+                pass
+                # print("NO THIS ID", lever["turn_object"])
 
         
 
     def make_schema(self):
-        random_id = 0
+        random_id = 100
         while self._queue_objects:
             obj = self._queue_objects.pop()
             match obj["type"]:
@@ -63,24 +63,25 @@ class Schema(Logic_side):
                 case _:
                     print("no this type", obj["type"])
             random_id += 2
-            print(obj)
-        print("\n"*2)
+        #     print(obj)
+        # print("\n"*2)
 
 
                 
 
     def activate_platforms(self):
-        pass
+        for platform in self.platforms:
+            platform["activated"] = self.logic_objects[str(platform["activate_from_obj_id"])]["result_signal"]
+        #     print(platform)
+        # print("\n\n")
 
 
 
     '''
         так, тз этого модуля
-        надо прописать отображение логической схемы 
-        что нужно для схемы:
+        надо прописать отображение логической схемы и красиво сверстать
+        что нужно ещё для схемы:
             скомуниздить конфиг левела и отрисовать все элементы
-            проходить всю логику этой схемы
-        (систему парсинга json с левелом я ещё не придумал)
         (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh)
         
     '''

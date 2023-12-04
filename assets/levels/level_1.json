@@ -20,16 +20,18 @@
     ],
 
     "platforms":
-    {
-        "4": {
+    [
+        {
             "y": 30,
-            "activated": false
+            "activated": false,
+            "activate_from_obj_id": 3
         },
-        "5": {
+        {
             "y": 60,
-            "activated": false
+            "activated": false,
+            "activate_from_obj_id": 4
         }
-    },
+    ],
     
     
     "logic_objects":{
@@ -61,7 +63,7 @@
             "type": "not",
             "x": 20,
             "y": 20,
-            "turn_object": -1,
+            "turn_object": -99,
             "activated": {},
             "result_signal": false
         },
@@ -69,7 +71,7 @@
             "type": "not",
             "x": 20,
             "y": 20,
-            "turn_object": -1,
+            "turn_object": -99,
             "activated": {},
             "result_signal": false
         }

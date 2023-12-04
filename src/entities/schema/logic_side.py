@@ -32,7 +32,8 @@ class Logic_side:
         else:
             now_obj["result_signal"] = False
         
-        obj_to_activate = logic_objects.get(str(random_id))
+        obj_to_activate = logic_objects.get(str(now_obj["turn_object"]))
+        # print("---", obj_to_activate)
         if obj_to_activate:
             if now_obj["result_signal"]:
                 obj_to_activate["activated"][str(random_id)] = True
