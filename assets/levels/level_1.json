@@ -3,86 +3,51 @@
     "levers":
     [
         {
-            "object_id": 1,
             "y": 20,
             "activated": false,
-            "turn_object": -1
+            "turn_object": 0
         },
         {
-            "object_id": 2,
             "y": 40,
             "activated": false,
-            "turn_object": -2
+            "turn_object": 100
         },
         {
-            "object_id": 3,
             "y": 60,
             "activated": false,
-            "turn_object": -3
+            "turn_object": 100
         }
     ],
 
     "platforms":
     {
         "4": {
-            "object_id": 4,
             "y": 30,
             "activated": false
         },
         "5": {
-            "object_id": 5,
             "y": 60,
             "activated": false
         }
     },
     
-    "connections":
-    [
-        {
-            "start_id": 1,
-            "end_id": 4
+    
+    "logic_objects":{
+        "0": {
+            "type": "not",
+            "x": 20,
+            "y": 20,
+            "turn_object": 1,
+            "activated": {},
+            "result_signal": false
+        },
+        "1": {
+            "type": "not",
+            "x": 20,
+            "y": 20,
+            "turn_object": -1,
+            "activated": {},
+            "result_signal": false
         }
-    ],
-    "node_connections":
-    [
-        {
-            "object_id": 0,
-            "x": "vw",
-            "y": "vh"
-        }
-    ],
-    "logic":{
-        "xor":
-        [
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            }
-        ],
-        "or":
-        [
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            }
-        ],
-        "and":
-        [
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            }
-        ],
-        "not":
-        [
-            {
-                "object_id": 0,
-                "x": "vw",
-                "y": "vh"
-            }
-        ]
     }
 }

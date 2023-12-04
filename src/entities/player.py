@@ -47,7 +47,8 @@ class Player:
         self.player_pos = min(len(self.levers)-1, self.player_pos + 1)
 
     def activate(self):
-        return self.player_pos
+        self.levers[self.player_pos]["activated"] = not(self.levers[self.player_pos]["activated"])
+        print(f"activated {self.player_pos}")
     
 
     '''
