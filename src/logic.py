@@ -56,6 +56,8 @@ class Logic:
             # 1 - win, 0 - lose
             if self.check_to_win():
                 print("win")
+            if self.check_to_lose():
+                print("lose")
 
 
     def handle_up_down(self, event):
@@ -77,6 +79,9 @@ class Logic:
         if self.config.level_config:
             return False
         return True
+    
+    def check_to_lose(self):
+        return self.config.player_lose
 
 
     def check_quit_event(self, event):

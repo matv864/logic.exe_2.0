@@ -60,11 +60,13 @@ class Schema(Logic_side):
                     Logic_side.func_splitter(self.logic_objects, obj, self._queue_objects, random_id)
                 case "node":
                     Logic_side.func_node(self.logic_objects, obj, self._queue_objects, random_id)
+                case "and":
+                    Logic_side.func_and(self.logic_objects, obj, self._queue_objects, random_id)
                 case _:
                     print("no this type", obj["type"])
             random_id += 2
-        #     print(obj)
-        # print("\n"*2)
+            print(obj)
+        print("\n"*2)
 
 
                 

@@ -10,7 +10,7 @@
         {
             "y": 40,
             "activated": false,
-            "turn_object": 100
+            "turn_object": 5
         },
         {
             "y": 60,
@@ -24,12 +24,12 @@
         {
             "y": 30,
             "activated": false,
-            "activate_from_obj_id": 3
+            "activate_from_obj_id": 0
         },
         {
             "y": 60,
             "activated": false,
-            "activate_from_obj_id": 4
+            "activate_from_obj_id": 5
         }
     ],
     
@@ -47,28 +47,12 @@
             "type": "node",
             "x": 20,
             "y": 20,
-            "turn_object": 2,
+            "turn_object": 5,
             "activated": {},
             "result_signal": false
         },
-        "2": {
-            "type": "splitter",
-            "x": 20,
-            "y": 20,
-            "turn_object": [3, 4],
-            "activated": {},
-            "result_signal": false
-        },
-        "3": {
-            "type": "not",
-            "x": 20,
-            "y": 20,
-            "turn_object": -99,
-            "activated": {},
-            "result_signal": false
-        },
-        "4": {
-            "type": "not",
+        "5": {
+            "type": "and",
             "x": 20,
             "y": 20,
             "turn_object": -99,

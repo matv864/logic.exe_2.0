@@ -16,7 +16,8 @@ class GameConfig:
         self.lifes = 3
         self.level = 0
 
-
+        self.player_lose = False
+        
         self.update_level_config()
         
 
