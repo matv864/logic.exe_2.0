@@ -1,7 +1,7 @@
 import pygame
 import time
 
-from .parse_level import get_level_config
+from .working_with_assets import get_level_config
 
 
 class GameConfig:

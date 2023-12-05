@@ -16,8 +16,9 @@ from .entities import Background, Player, Score, Schema, Platform
 class Logic:
     def __init__(self):
         pygame.init()
+        pygame.mixer.init()
         pygame.display.set_caption("LOGIC2.EXE")
-        size_of_screen = (1000, 500)
+        size_of_screen = (1920, 1200)
         # window = Window(288, 512)
         screen = pygame.display.set_mode(size_of_screen)
         # images = Images()
