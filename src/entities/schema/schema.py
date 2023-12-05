@@ -24,7 +24,10 @@ class Schema:
         # rotated_image = pygame.transform.rotate(self.image, self.rot)
         main_surf = pygame.Surface(self.game_config.schema_module_size)
         main_surf.fill((0, 0, 0))
-        Paint_side.paint_elements(main_surf, self.vw, self.vh, self.logic_objects)
+        Paint_side.paint_elements(main_surf, self.vw, self.vh, self.logic_objects.values())
+        # for obj in self.logic_objects.values():
+        #     print(obj)
+        # print("\n\n")
         self.game_config.screen.blit(main_surf, self.game_config.schema_module_location)
 
 
@@ -37,13 +40,11 @@ class Schema:
         self._queue_objects = []
 
     def watch_lever(self):
-        random_id = 0
         for lever in self.levers:
             obj_to_activate = self.logic_objects.get(str(lever["turn_object"]))
             if obj_to_activate:
-                if lever["activated"]:
-                    obj_to_activate["activated"][str(random_id)] = True
-                    random_id += 1
+                obj_to_activate["activated"]["lever: " + str(lever["y"])] = lever["activated"]
+
                 self._queue_objects.append(obj_to_activate)
             else:
                 pass
@@ -52,30 +53,32 @@ class Schema:
         
 
     def make_schema(self):
-        random_id = 100
         while self._queue_objects:
             obj = self._queue_objects.pop()
             match obj["type"]:
                 case "not":
-                    Logic_side.func_not(self.logic_objects, obj, self._queue_objects, random_id)
+                    Logic_side.func_not(self.logic_objects, obj, self._queue_objects)
                 case "splitter":
-                    Logic_side.func_splitter(self.logic_objects, obj, self._queue_objects, random_id)
+                    Logic_side.func_splitter(self.logic_objects, obj, self._queue_objects)
                 case "node":
-                    Logic_side.func_node(self.logic_objects, obj, self._queue_objects, random_id)
+                    Logic_side.func_node(self.logic_objects, obj, self._queue_objects)
                 case "and":
-                    Logic_side.func_and(self.logic_objects, obj, self._queue_objects, random_id)
+                    Logic_side.func_and(self.logic_objects, obj, self._queue_objects)
+                case "or":
+                    Logic_side.func_or(self.logic_objects, obj, self._queue_objects)
                 case _:
                     print("no this type", obj["type"])
-            random_id += 2
-            print(obj)
-        print("\n"*2)
+        #     print(obj)
+        # print("\n"*2)
 
 
                 
 
     def activate_platforms(self):
         for platform in self.platforms:
-            platform["activated"] = self.logic_objects[str(platform["activate_from_obj_id"])]["result_signal"]
+            obj = self.logic_objects.get(str(platform["activate_from_obj_id"]))
+            if obj:
+                platform["activated"] = self.logic_objects[str(platform["activate_from_obj_id"])]["result_signal"]
         #     print(platform)
         # print("\n\n")
 

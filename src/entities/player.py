@@ -19,20 +19,20 @@ class Player:
         main_surf = pygame.Surface(self.game_config.player_module_size)
         main_surf.fill((0, 255, 120))
 
-        surf_player = pygame.Surface((50, 50))
+        surf_player = pygame.Surface((20, 20))
         surf_player.fill((255, 255, 255))
 
-        surf_0 = pygame.Surface((50, 50))
+        surf_0 = pygame.Surface((20, 20))
         surf_0.fill((255, 0, 0))
 
-        surf_1 = pygame.Surface((50, 50))
+        surf_1 = pygame.Surface((20, 20))
         surf_1.fill((0, 255, 0))
-
         for object in self.levers:
             if object["activated"]:
                 main_surf.blit(surf_1, (self.game_config.player_module_size[0]/3, object["y"]*self.vh)) 
             else:
                 main_surf.blit(surf_0, (self.game_config.player_module_size[0]/3, object["y"]*self.vh))
+            # print(object["y"]*self.vh)
         main_surf.blit(surf_player, (self.game_config.player_module_size[0]/3, self.levers[self.player_pos]["y"]*self.vh)) 
         
         
