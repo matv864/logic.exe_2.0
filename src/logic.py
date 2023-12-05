@@ -24,7 +24,6 @@ class Logic:
         # images = Images()
         self.config = GameConfig(
             screen=screen,
-            clock=pygame.time.Clock(),
             size_of_screen = size_of_screen
         )
 
@@ -39,6 +38,7 @@ class Logic:
 
 
     def play(self):
+        clock = pygame.time.Clock()
         while True:
             for event in pygame.event.get():
                 self.check_quit_event(event)
@@ -59,6 +59,8 @@ class Logic:
                 print("win")
             if self.check_to_lose():
                 print("lose")
+
+            clock.tick(self.config.fps)
 
 
     def handle_up_down(self, event):
