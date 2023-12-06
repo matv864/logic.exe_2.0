@@ -35,9 +35,44 @@ class Score:
  
         self.game_config.screen.blit(main_surf, self.game_config.score_module_location) 
  
-    def draw_oct(self,start_x,start_y,end_x,end_y,cut_size):
+    def make_oct(self, start_x, start_y, end_x, end_y, cut_size):
         return [[start_x, start_y+cut_size], [start_x, end_y-cut_size], 
                 [start_x+cut_size,end_y], [end_x-cut_size, end_y],
+                [end_x,end_y-cut_size], [end_x,start_y+cut_size],
+                [end_x-cut_size,start_y], [start_x+cut_size,start_y]]
+    def draw_block(self, main_surf, x, y):
+        font = get_fonts("FiraSans-Regular.ttf")
+        oct = self.make_oct(3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh)
+        pygame.draw.polygon(main_surf, (255,255,255), oct)
+        pygame.draw.polygon(main_surf, (0,0,0), oct, 1)
+        img = font.render(f"level: {self.game_config.level}", True, "red") 
+        main_surf.blit(img, (5*self.vw, 55*self.vh-12)) 
+
+
+    def draw_score(self, main_surf): 
+        # self.game_config.level 
+        # self.game_config.lifes 
+        # self.score
+
+        x = 0 
+        y = 0
+        self.draw_block(main_surf, x, y)
+        
+
+        # img = font.render(f"lifes: {self.game_config.lifes}", True, "red") 
+        # main_surf.blit(img, (42*self.vw, 30*self.vh)) 
+ 
+        # img = font.render(f"time: {self.score}", True, "red") 
+        # main_surf.blit(img, (80*self.vw, 30*self.vh)) 
+ 
+ 
+        ''' 
+        так, тз этого модуля 
+        надо красиво отверстать скор борд 
+        (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh) 
+         
+        '''
+'''
                 [end_x,end_y-cut_size],[end_x,start_y+cut_size],
                 [end_x-cut_size,start_y],[start_x+cut_size,start_y]]
  
@@ -48,27 +83,6 @@ class Score:
                     self.draw_oct(start_x,start_y,end_x,end_y,cut_size))
         pygame.draw.polygon(surf, (0,0,0), 
                     self.draw_oct(start_x,start_y,end_x,end_y,cut_size),1)
-    def draw_score(self, main_surf): 
-        # self.game_config.level 
-        # self.game_config.lifes 
-        # self.score
+'''
 
-        font = get_fonts("FiraSans-Regular.ttf")
-        self.draw_frame(main_surf,7,3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh)
-        img = font.render(f"level: {self.game_config.level}", True, "red") 
-        main_surf.blit(img, (5*self.vw, 55*self.vh-12)) 
- 
 
-        img = font.render(f"lifes: {self.game_config.lifes}", True, "red") 
-        main_surf.blit(img, (42*self.vw, 30*self.vh)) 
- 
-        img = font.render(f"time: {self.score}", True, "red") 
-        main_surf.blit(img, (80*self.vw, 30*self.vh)) 
- 
- 
-        ''' 
-        так, тз этого модуля 
-        надо красиво отверстать скор борд 
-        (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh) 
-         
-        '''
