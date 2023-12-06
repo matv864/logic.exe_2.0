@@ -35,7 +35,11 @@ class Score:
  
         self.game_config.screen.blit(main_surf, self.game_config.score_module_location) 
  
- 
+    def draw_oct(self,start_x,start_y,end_x,end_y,cut_size):
+        return [[start_x, start_y+cut_size], [start_x, end_y-cut_size], 
+                [start_x+cut_size,end_y], [end_x-cut_size, end_y],
+                [end_x,end_y-cut_size],[end_x,start_y+cut_size],
+                [end_x-cut_size,start_y],[start_x+cut_size,start_y]]
  
  
     def draw_score(self, main_surf): 
@@ -45,12 +49,11 @@ class Score:
 
         font = get_fonts("FiraSans-Regular.ttf")
         pygame.draw.polygon(main_surf, (255,255,255), 
-                    [[3*self.vw, 35*self.vh], [3*self.vw, 75*self.vh], 
-                     [3*self.vw+10*self.vh, 85*self.vh], [20*self.vw, 85*self.vh],
-                     [20*self.vw+10*self.vh,75*self.vh],[20*self.vw+10*self.vh,35*self.vh],
-                     [20*self.vw,25*self.vh],[3*self.vw+10*self.vh,25*self.vh]],1)
+                    self.draw_oct(3*self.vw,25*self.vh,20*self.vw,100*self.vh,10*self.vh))
+        pygame.draw.polygon(main_surf, (0,0,0), 
+                    self.draw_oct(3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh),1)
         img = font.render(f"level: {self.game_config.level}", True, "red") 
-        main_surf.blit(img, (5*self.vw, 21*self.vh)) 
+        main_surf.blit(img, (5*self.vw, 100*self.vh)) 
  
 
         img = font.render(f"lifes: {self.game_config.lifes}", True, "red") 
