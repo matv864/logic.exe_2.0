@@ -49,11 +49,11 @@ class Score:
 
         font = get_fonts("FiraSans-Regular.ttf")
         pygame.draw.polygon(main_surf, (255,255,255), 
-                    self.draw_oct(3*self.vw,25*self.vh,20*self.vw,100*self.vh,10*self.vh))
+                    self.draw_oct(3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh))
         pygame.draw.polygon(main_surf, (0,0,0), 
                     self.draw_oct(3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh),1)
         img = font.render(f"level: {self.game_config.level}", True, "red") 
-        main_surf.blit(img, (5*self.vw, 100*self.vh)) 
+        main_surf.blit(img, (5*self.vw, 55*self.vh-12)) 
  
 
         img = font.render(f"lifes: {self.game_config.lifes}", True, "red") 
