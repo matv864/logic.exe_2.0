@@ -47,14 +47,14 @@ class Score:
         pygame.draw.polygon(surf, (255,255,255), 
                     self.draw_oct(start_x,start_y))
         pygame.draw.polygon(surf, (0,0,0), 
-                    self.draw_oct(start_x,start_y),1)
+                    self.draw_oct(start_x,start_y,end_x,end_y,cut_size),1)
     def draw_score(self, main_surf): 
         # self.game_config.level 
         # self.game_config.lifes 
         # self.score
 
         font = get_fonts("FiraSans-Regular.ttf")
-        self.draw_frame(main_surf,3*self.vw,25*self.vh)
+        self.draw_frame(main_surf,7,3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh)
         img = font.render(f"level: {self.game_config.level}", True, "red") 
         main_surf.blit(img, (5*self.vw, 55*self.vh-12)) 
  
