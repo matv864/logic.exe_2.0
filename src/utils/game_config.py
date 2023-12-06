@@ -7,7 +7,7 @@ from .working_with_assets import get_level_config
 class GameConfig:
     def __init__(self, screen: pygame.Surface, size_of_screen: int) -> None:
         self.screen = screen
-        self.fps = 1
+        self.fps = 30
 
         # for score board
         self.start_time = time.time()

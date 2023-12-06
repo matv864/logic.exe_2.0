@@ -4,8 +4,9 @@
 
 import asyncio
 import sys
-
+import time
 import pygame
+
 from pygame.locals import QUIT, K_DOWN, K_UP, K_w, K_s, K_RETURN, K_SPACE
 
 from .utils import GameConfig
@@ -18,22 +19,23 @@ class Logic:
         pygame.init()
         pygame.mixer.init()
         pygame.display.set_caption("LOGIC2.EXE")
-        size_of_screen = (1920, 1200)
+        self.size_of_screen = (1920, 1200)
         # window = Window(288, 512)
-        screen = pygame.display.set_mode(size_of_screen)
-        # images = Images()
-        self.config = GameConfig(
-            screen=screen,
-            size_of_screen = size_of_screen
-        )
+        
 
     def start(self):
-        self.background = Background(self.config)
-        self.player = Player(self.config)
-        self.schema = Schema(self.config)
-        self.platform = Platform(self.config)
-        self.score = Score(self.config)
-        self.play()
+        while True:
+            screen = pygame.display.set_mode(self.size_of_screen)
+            self.config = GameConfig(
+                screen=screen,
+                size_of_screen = self.size_of_screen
+            )
+            self.background = Background(self.config)
+            self.player = Player(self.config)
+            self.schema = Schema(self.config)
+            self.platform = Platform(self.config)
+            self.score = Score(self.config)
+            self.play()
 
 
 
@@ -58,7 +60,8 @@ class Logic:
             if self.check_to_win():
                 print("win")
             if self.check_to_lose():
-                print("lose")
+                self.losing()
+                break
 
             clock.tick(self.config.fps)
 
@@ -83,8 +86,14 @@ class Logic:
             return False
         return True
     
+
     def check_to_lose(self):
         return self.config.player_lose
+    
+    def losing(self):
+        time.sleep(3)
+        # images = Images()
+        
 
 
     def check_quit_event(self, event):
