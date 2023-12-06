@@ -35,26 +35,26 @@ class Score:
  
         self.game_config.screen.blit(main_surf, self.game_config.score_module_location) 
  
-    def draw_oct(self,start_x,start_y,end_x,end_y,cut_size):
-        return [[start_x, start_y+cut_size], [start_x, end_y-cut_size], 
-                [start_x+cut_size,end_y], [end_x-cut_size, end_y],
-                [end_x,end_y-cut_size],[end_x,start_y+cut_size],
-                [end_x-cut_size,start_y],[start_x+cut_size,start_y]]
+    def draw_oct(self,start_x,start_y):
+        return [[start_x, start_y+10*self.vh], [start_x, start_y+60*self.vh-10*self.vh], 
+                [start_x+10*self.vh,start_y+60*self.vh], [start_x+17*self.vw-10*self.vh, start_y+60*self.vh],
+                [start_x+17*self.vw,start_y+60*self.vh-10*self.vh],[start_x+17*self.vw,start_y+10*self.vh],
+                [start_x+17*self.vw-10*self.vh,start_y],[start_x+10*self.vh,start_y]]
  
-    def draw_frame(self,surf,shadow_size,start_x,start_y,end_x,end_y,cut_size):
+    def draw_frame(self,surf,start_x,start_y):
         pygame.draw.polygon(surf, (0,0,0), 
-                    self.draw_oct(start_x+shadow_size,start_y+shadow_size,end_x+shadow_size,end_y+shadow_size,cut_size))
+                    self.draw_oct(start_x+7,start_y+7))
         pygame.draw.polygon(surf, (255,255,255), 
-                    self.draw_oct(start_x,start_y,end_x,end_y,cut_size))
+                    self.draw_oct(start_x,start_y))
         pygame.draw.polygon(surf, (0,0,0), 
-                    self.draw_oct(start_x,start_y,end_x,end_y,cut_size),1)
+                    self.draw_oct(start_x,start_y),1)
     def draw_score(self, main_surf): 
         # self.game_config.level 
         # self.game_config.lifes 
         # self.score
 
         font = get_fonts("FiraSans-Regular.ttf")
-        self.draw_frame(main_surf,7,3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh)
+        self.draw_frame(main_surf,3*self.vw,25*self.vh)
         img = font.render(f"level: {self.game_config.level}", True, "red") 
         main_surf.blit(img, (5*self.vw, 55*self.vh-12)) 
  
