@@ -1,6 +1,6 @@
-import pygame 
-import time 
-from pathlib import Path 
+import pygame
+import time
+from pathlib import Path
 
 from ..utils import get_fonts
  
@@ -44,8 +44,13 @@ class Score:
         # self.score
 
         font = get_fonts("FiraSans-Regular.ttf")
+        pygame.draw.polygon(main_surf, (255,255,255), 
+                    [[3*self.vw, 35*self.vh], [3*self.vw, 75*self.vh], 
+                     [3*self.vw+10*self.vh, 85*self.vh], [20*self.vw, 85*self.vh],
+                     [20*self.vw+10*self.vh,75*self.vh],[20*self.vw+10*self.vh,35*self.vh],
+                     [20*self.vw,25*self.vh],[3*self.vw+10*self.vh,25*self.vh]],1)
         img = font.render(f"level: {self.game_config.level}", True, "red") 
-        main_surf.blit(img, (5*self.vw, 30*self.vh)) 
+        main_surf.blit(img, (5*self.vw, 21*self.vh)) 
  
 
         img = font.render(f"lifes: {self.game_config.lifes}", True, "red") 
