@@ -41,17 +41,20 @@ class Score:
                 [end_x,end_y-cut_size],[end_x,start_y+cut_size],
                 [end_x-cut_size,start_y],[start_x+cut_size,start_y]]
  
- 
+    def draw_frame(self,surf,shadow_size,start_x,start_y,end_x,end_y,cut_size):
+        pygame.draw.polygon(surf, (0,0,0), 
+                    self.draw_oct(start_x+shadow_size,start_y+shadow_size,end_x+shadow_size,end_y+shadow_size,cut_size))
+        pygame.draw.polygon(surf, (255,255,255), 
+                    self.draw_oct(start_x,start_y,end_x,end_y,cut_size))
+        pygame.draw.polygon(surf, (0,0,0), 
+                    self.draw_oct(start_x,start_y,end_x,end_y,cut_size),1)
     def draw_score(self, main_surf): 
         # self.game_config.level 
         # self.game_config.lifes 
         # self.score
 
         font = get_fonts("FiraSans-Regular.ttf")
-        pygame.draw.polygon(main_surf, (255,255,255), 
-                    self.draw_oct(3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh))
-        pygame.draw.polygon(main_surf, (0,0,0), 
-                    self.draw_oct(3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh),1)
+        self.draw_frame(main_surf,7,3*self.vw,25*self.vh,20*self.vw,85*self.vh,10*self.vh)
         img = font.render(f"level: {self.game_config.level}", True, "red") 
         main_surf.blit(img, (5*self.vw, 55*self.vh-12)) 
  
