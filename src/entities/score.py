@@ -50,21 +50,18 @@ class Score:
                     self.draw_oct(start_x,start_y))
         pygame.draw.polygon(surf, (0,0,0), 
                     self.draw_oct(start_x,start_y),1)
+    def draw_counter(self,surface,text,x,y):
+        self.draw_frame(surface,x,y)
+        img = self.font.render(text, True, "red") 
+        surface.blit(img, (x+2*self.vw, y+32*self.vh-3*self.vc)) 
+
     def draw_score(self, main_surf): 
         # self.game_config.level 
         # self.game_config.lifes 
         # self.score
-        self.draw_frame(main_surf,3*self.vw,23*self.vh)
-        img = self.font.render(f"level: {self.game_config.level}", True, "red") 
-        main_surf.blit(img, (6*self.vw, 55*self.vh-3*self.vc)) 
- 
-        self.draw_frame(main_surf,39*self.vw,23*self.vh)
-        img = self.font.render(f"lifes: {self.game_config.lifes}", True, "red") 
-        main_surf.blit(img, (42*self.vw, 55*self.vh-3*self.vc)) 
- 
-        self.draw_frame(main_surf,78*self.vw,23*self.vh)
-        img = self.font.render(f"time: {self.score}", True, "red") 
-        main_surf.blit(img, (80*self.vw, 55*self.vh-3*self.vc)) 
+        self.draw_counter(main_surf,f"level: {self.game_config.level}",3*self.vw,23*self.vh)
+        self.draw_counter(main_surf,f"lifes: {self.game_config.lifes}",39*self.vw,23*self.vh)
+        self.draw_counter(main_surf,f"time: {self.score}",78*self.vw,23*self.vh)
  
  
         ''' 
