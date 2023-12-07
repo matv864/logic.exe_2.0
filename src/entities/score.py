@@ -37,7 +37,7 @@ class Score:
  
         self.game_config.screen.blit(main_surf, self.game_config.score_module_location) 
  
-    def draw_oct(self,start_x,start_y):
+    def get_oct_cords(self,start_x,start_y):
         return [[start_x, start_y+10*self.vh], [start_x, start_y+60*self.vh-10*self.vh], 
                 [start_x+10*self.vh,start_y+60*self.vh], [start_x+17*self.vw-10*self.vh, start_y+60*self.vh],
                 [start_x+17*self.vw,start_y+60*self.vh-10*self.vh],[start_x+17*self.vw,start_y+10*self.vh],
@@ -45,11 +45,11 @@ class Score:
  
     def draw_frame(self,surf,start_x,start_y):
         pygame.draw.polygon(surf, (0,0,0), 
-                    self.draw_oct(start_x+1*self.vw,start_y+1*self.vw))
+                    self.get_oct_cords(start_x+1*self.vw,start_y+1*self.vw))
         pygame.draw.polygon(surf, (255,255,255), 
-                    self.draw_oct(start_x,start_y))
+                    self.get_oct_cords(start_x,start_y))
         pygame.draw.polygon(surf, (0,0,0), 
-                    self.draw_oct(start_x,start_y),1)
+                    self.get_oct_cords(start_x,start_y),1)
     def draw_counter(self,surface,text,x,y):
         self.draw_frame(surface,x,y)
         img = self.font.render(text, True, "red") 
