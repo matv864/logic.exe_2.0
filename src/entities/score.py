@@ -14,7 +14,8 @@ class Score:
         self.vw = self.game_config.score_module_size[0] / 100 
         self.vh = self.game_config.score_module_size[1] / 100 
         self.vc = (self.vh + self.vw) / 2
- 
+        self.font = get_fonts("FiraSans-Regular.ttf", int(6 * self.vc))
+
         self.score = 0 
         self.start_score = 1000 
  
@@ -53,18 +54,17 @@ class Score:
         # self.game_config.level 
         # self.game_config.lifes 
         # self.score
-
-        font = get_fonts("FiraSans-Regular.ttf", int(6 * self.vc))
-        self.draw_frame(main_surf,3*self.vw,25*self.vh)
-        img = font.render(f"level: {self.game_config.level}", True, "red") 
+        self.draw_frame(main_surf,3*self.vw,23*self.vh)
+        img = self.font.render(f"level: {self.game_config.level}", True, "red") 
         main_surf.blit(img, (6*self.vw, 55*self.vh-3*self.vc)) 
  
-
-        img = font.render(f"lifes: {self.game_config.lifes}", True, "red") 
-        main_surf.blit(img, (42*self.vw, 30*self.vh)) 
+        self.draw_frame(main_surf,39*self.vw,23*self.vh)
+        img = self.font.render(f"lifes: {self.game_config.lifes}", True, "red") 
+        main_surf.blit(img, (42*self.vw, 55*self.vh-3*self.vc)) 
  
-        img = font.render(f"time: {self.score}", True, "red") 
-        main_surf.blit(img, (80*self.vw, 30*self.vh)) 
+        self.draw_frame(main_surf,78*self.vw,23*self.vh)
+        img = self.font.render(f"time: {self.score}", True, "red") 
+        main_surf.blit(img, (80*self.vw, 55*self.vh-3*self.vc)) 
  
  
         ''' 
