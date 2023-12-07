@@ -47,7 +47,7 @@ class Score:
         pygame.draw.polygon(surf, (255,255,255), 
                     self.draw_oct(start_x,start_y))
         pygame.draw.polygon(surf, (0,0,0), 
-                    self.draw_oct(start_x,start_y,end_x,end_y,cut_size),1)
+                    self.draw_oct(start_x,start_y),1)
     def draw_score(self, main_surf): 
         # self.game_config.level 
         # self.game_config.lifes 
