@@ -44,7 +44,7 @@ class Score:
  
     def draw_frame(self,surf,start_x,start_y):
         pygame.draw.polygon(surf, (0,0,0), 
-                    self.draw_oct(start_x+7,start_y+7))
+                    self.draw_oct(start_x+1*self.vw,start_y+1*self.vw))
         pygame.draw.polygon(surf, (255,255,255), 
                     self.draw_oct(start_x,start_y))
         pygame.draw.polygon(surf, (0,0,0), 
@@ -57,7 +57,7 @@ class Score:
         font = get_fonts("FiraSans-Regular.ttf", int(6 * self.vc))
         self.draw_frame(main_surf,3*self.vw,25*self.vh)
         img = font.render(f"level: {self.game_config.level}", True, "red") 
-        main_surf.blit(img, (5*self.vw, 55*self.vh-12)) 
+        main_surf.blit(img, (6*self.vw, 55*self.vh-3*self.vc)) 
  
 
         img = font.render(f"lifes: {self.game_config.lifes}", True, "red") 
