@@ -1,15 +1,20 @@
 import time
 import pygame
 
+from ..utils import get_image
 
 
 
-class Player:
+class Player(pygame.sprite.Sprite):
     def __init__(self, config) -> None:
+        pygame.sprite.Sprite.__init__(self)
         self.game_config = config
 
         self.vw = self.game_config.player_module_size[0] / 100
         self.vh = self.game_config.player_module_size[1] / 100
+
+        self.image = get_image("pngwing.com.png")
+        self.rect = self.image.get_rect()
 
         self.player_pos = 0
         self.levers = self.game_config.level_config["levers"]
@@ -19,8 +24,9 @@ class Player:
         main_surf = pygame.Surface(self.game_config.player_module_size)
         main_surf.fill((0, 255, 120))
 
-        surf_player = pygame.Surface((20, 20))
-        surf_player.fill((255, 255, 255))
+        # surf_player = pygame.Surface((20, 20))
+        # surf_player.fill((255, 255, 255))
+        main_surf.blit(self.image,(self.game_config.player_module_size[0]/6, self.levers[self.player_pos]["y"]*self.vh-3*self.vh))
 
         surf_0 = pygame.Surface((20, 20))
         surf_0.fill((255, 0, 0))
@@ -33,7 +39,7 @@ class Player:
             else:
                 main_surf.blit(surf_0, (self.game_config.player_module_size[0]/3, object["y"]*self.vh))
             # print(object["y"]*self.vh)
-        main_surf.blit(surf_player, (self.game_config.player_module_size[0]/3, self.levers[self.player_pos]["y"]*self.vh)) 
+        # main_surf.blit(surf_player, (self.game_config.player_module_size[0]/3, self.levers[self.player_pos]["y"]*self.vh)) 
         
         
 
