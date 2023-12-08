@@ -21,6 +21,9 @@ class Playing:
                 if event.type == pygame.KEYDOWN:
                     self.handle_up_down(event)
                     self.handle_enter_click(event)
+            
+            if self.config.state != "play":
+                break
 
             self.background.draw()
             self.player.draw()

@@ -48,11 +48,10 @@ class Platform:
         counter_of_falling = 0
         if self.platforms[self.apple_pos]["activated"]:
             return
-        for i in range(self.apple_pos, self.max_apple_pos):
+        for _ in range(self.apple_pos, self.max_apple_pos):
             if self.platforms[self.apple_pos]["activated"]:
                 if counter_of_falling >= 2:
-                    self.apple_is_broken = True
-                    self.game_config.player_lose = True
+                    self.game_config.state = "losing"
                     print("lose")
             else:
                 self.apple_pos += 1

@@ -7,7 +7,6 @@ from ..utils import get_image
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, config) -> None:
-        pygame.sprite.Sprite.__init__(self)
         self.game_config = config
 
         self.vw = self.game_config.player_module_size[0] / 100
