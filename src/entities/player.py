@@ -14,6 +14,9 @@ class Player(pygame.sprite.Sprite):
         self.vh = self.game_config.player_module_size[1] / 100
 
         self.image = get_image("pngwing.com.png")
+        self.anim1 = get_image("anim1.png")
+        self.anim2 = get_image("anim2.png")
+
         self.rect = self.image.get_rect()
 
         self.player_pos = 0
@@ -27,7 +30,7 @@ class Player(pygame.sprite.Sprite):
         # surf_player = pygame.Surface((20, 20))
         # surf_player.fill((255, 255, 255))
         main_surf.blit(self.image,(self.game_config.player_module_size[0]/6, self.levers[self.player_pos]["y"]*self.vh-3*self.vh))
-
+        self.move_to(main_surf, 3*self.vh,40*self.vh)
         surf_0 = pygame.Surface((20, 20))
         surf_0.fill((255, 0, 0))
 
@@ -45,6 +48,14 @@ class Player(pygame.sprite.Sprite):
 
 
         self.game_config.screen.blit(main_surf, self.game_config.player_module_location)
+    def move_to(self,main_surf, start_pos, end_pos):
+        while(start_pos != end_pos):
+            if start_pos % 2 == 0:
+                main_surf.blit(self.anim1,(self.game_config.player_module_size[0]/6, start_pos))
+            else:
+                main_surf.blit(self.anim2,(self.game_config.player_module_size[0]/6, start_pos))
+            start_pos+=(end_pos-start_pos)/8
+        
 
     def move_up(self):
         self.player_pos = max(0, self.player_pos - 1)
