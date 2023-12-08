@@ -12,9 +12,10 @@ class Player(pygame.sprite.Sprite):
         self.vw = self.game_config.player_module_size[0] / 100
         self.vh = self.game_config.player_module_size[1] / 100
 
-        self.image = get_image("pngwing.com.png")
-        self.anim1 = get_image("anim1.png")
-        self.anim2 = get_image("anim2.png")
+        self.player_avatar = get_image("pngwing.com.png")
+        self.animation = [get_image("anim1.png"), get_image("anim2.png")]
+        self.framenum = 0
+        self.image_change_interval = 2*self.vh
 
         self.rect = self.image.get_rect()
 
@@ -48,12 +49,13 @@ class Player(pygame.sprite.Sprite):
 
         self.game_config.screen.blit(main_surf, self.game_config.player_module_location)
     def move_to(self,main_surf, start_pos, end_pos):
-        while(start_pos != end_pos):
-            if start_pos % 2 == 0:
-                main_surf.blit(self.anim1,(self.game_config.player_module_size[0]/6, start_pos))
-            else:
-                main_surf.blit(self.anim2,(self.game_config.player_module_size[0]/6, start_pos))
-            start_pos+=(end_pos-start_pos)/8
+        for i in range(8):
+            self.counter += 1
+            if self.counter == self.image_change_interval:
+                self.current_frame = (self.current_frame + 1) % 2
+                self.image = self.animation[self.current_frame]
+                self.counter = 0
+            time.sleep(1)
         
 
     def move_up(self):
