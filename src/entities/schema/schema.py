@@ -1,14 +1,11 @@
 import pygame
 
 from .logic_side import Logic_side
-from .paint_side import Paint_side
+from .paint_side import Painting
 
 class Schema:
     def __init__(self, config):
         self.game_config = config
-
-        self.vw = self.game_config.schema_module_size[0] / 100
-        self.vh = self.game_config.schema_module_size[1] / 100
 
         self.levers = self.game_config.level_config["levers"]
         self.logic_objects = self.game_config.level_config["logic_objects"]
@@ -22,13 +19,12 @@ class Schema:
         self.make_schema()
         self.activate_platforms()
         # rotated_image = pygame.transform.rotate(self.image, self.rot)
-        main_surf = pygame.Surface(self.game_config.schema_module_size)
-        main_surf.fill((0, 0, 0))
-        Paint_side.paint_elements(main_surf, self.vw, self.vh, self.logic_objects.values())
-        # for obj in self.logic_objects.values():
-        #     print(obj)
-        # print("\n\n")
-        self.game_config.screen.blit(main_surf, self.game_config.schema_module_location)
+        Painting(self.game_config)
+        for obj in self.logic_objects.values():
+            print(obj["activated"], end=" ")
+        
+        print("\n\n")
+        
 
 
 

@@ -42,12 +42,12 @@
     "platforms":
     [
         {
-            "y": 10,
+            "y": 0,
             "activated": false,
             "activate_from_obj_id": 5
         },
         {
-            "y": 20,
+            "y": 15,
             "activated": false,
             "activate_from_obj_id": 7
         },
@@ -57,12 +57,12 @@
             "activate_from_obj_id": 9
         },
         {
-            "y": 40,
+            "y": 50,
             "activated": false,
             "activate_from_obj_id": 12
         },
         {
-            "y": 50,
+            "y": 80,
             "activated": false,
             "activate_from_obj_id": 14
         }
@@ -80,153 +80,169 @@
         },
         "1": {
             "type": "splitter",
-            "x": 1,
-            "y": 1,
+            "x": 10,
+            "y": 0,
             "turn_object": [2, 6],
             "activated": {},
             "result_signal": false
         },
         "2": {
             "type": "not",
-            "x": 2,
-            "y": 5,
+            "x": 30,
+            "y": 0,
             "turn_object": 3,
             "activated": {},
             "result_signal": false
         },
         "3": {
             "type": "splitter",
-            "x": 3,
-            "y": 3,
-            "turn_object": [4, 9],
+            "x": 50,
+            "y": 0,
+            "turn_object": [4, 20],
             "activated": {},
             "result_signal": false
         },
         "4": {
             "type": "not",
-            "x": 4,
-            "y": 4,
+            "x": 70,
+            "y": 0,
             "turn_object": 5,
             "activated": {},
             "result_signal": false
         },
         "5": {
             "type": "splitter",
-            "x": 5,
-            "y": 5,
+            "x": 80,
+            "y": 0,
             "turn_object": [-99, 19],
             "activated": {},
             "result_signal": false
         },
         "6": {
             "type": "splitter",
-            "x": 6,
-            "y": 6,
+            "x": 10,
+            "y": 10,
             "turn_object": [7, 15],
             "activated": {},
             "result_signal": false
         },
         "7": {
             "type": "or",
-            "x": 7,
-            "y": 7,
+            "x": 30,
+            "y": 15,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
         },
         "8": {
             "type": "and",
-            "x": 8,
-            "y": 8,
+            "x": 0,
+            "y": 30,
             "turn_object": 9,
             "activated": {},
             "result_signal": false
         },
         "9": {
             "type": "and",
-            "x": 9,
-            "y": 9,
+            "x": 70,
+            "y": 30,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
         },
         "10": {
             "type": "not",
-            "x": 10,
-            "y": 10,
+            "x": 0,
+            "y": 70,
             "turn_object": 11,
             "activated": {},
             "result_signal": false
         },
         "11": {
             "type": "and",
-            "x": 11,
-            "y": 11,
+            "x": 30,
+            "y": 70,
             "turn_object": 16,
             "activated": {},
             "result_signal": false
         },
         "12": {
             "type": "or",
-            "x": 12,
-            "y": 12,
+            "x": 90,
+            "y": 50,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
         },
         "13": {
             "type": "or",
-            "x": 13,
-            "y": 13,
-            "turn_object": 18,
+            "x": 0,
+            "y": 90,
+            "turn_object": 21,
             "activated": {},
             "result_signal": false
         },
         "14": {
             "type": "not",
-            "x": 14,
-            "y": 14,
+            "x": 90,
+            "y": 80,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
         },
         "15": {
             "type": "node",
-            "x": 15,
-            "y": 15,
+            "x": 10,
+            "y": 50,
             "turn_object": 11,
             "activated": {},
             "result_signal": false
         },
         "16": {
             "type": "node",
-            "x": 16,
-            "y": 16,
+            "x": 50,
+            "y": 70,
             "turn_object": 17,
             "activated": {},
             "result_signal": false
         },
         "17": {
             "type": "node",
-            "x": 17,
-            "y": 17,
+            "x": 50,
+            "y": 80,
             "turn_object": 14,
             "activated": {},
             "result_signal": false
         },
         "18": {
             "type": "node",
-            "x": 18,
-            "y": 18,
+            "x": 80,
+            "y": 60,
             "turn_object": 12,
             "activated": {},
             "result_signal": false
         },
         "19": {
             "type": "node",
-            "x": 19,
-            "y": 19,
+            "x": 80,
+            "y": 40,
             "turn_object": 12,
+            "activated": {},
+            "result_signal": false
+        },
+        "20": {
+            "type": "node",
+            "x": 50,
+            "y": 25,
+            "turn_object": 9,
+            "activated": {},
+            "result_signal": false
+        },
+        "21": {
+            "type": "node",
+            "x": 80,
+            "y": 90,
+            "turn_object": 18,
             "activated": {},
             "result_signal": false
         }
