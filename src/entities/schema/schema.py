@@ -13,20 +13,15 @@ class Schema:
 
         self._queue_objects = []
 
+        self.broken = False
+        self.winning = False
+
     def draw(self) -> None:
         self.clear_signals()
         self.watch_lever()
         self.make_schema()
         self.activate_platforms()
-        # rotated_image = pygame.transform.rotate(self.image, self.rot)
         Painting(self.game_config)
-        for obj in self.logic_objects.values():
-            print(obj["activated"], end=" ")
-        
-        print("\n\n")
-        
-
-
 
 
 

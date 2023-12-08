@@ -3,7 +3,7 @@
 
 import pygame
 
-from .engine import Playing, Greeting
+from .engine import Playing, Greeting, Losing, Winning, Final_winning
 
 from .utils import GameConfig
 
@@ -32,6 +32,12 @@ class Logic:
                     Greeting(self.config)
                 case "play":
                     Playing(self.config)
+                case "losing":
+                    Losing(self.config)
+                case "winning":
+                    Winning(self.config)
+                case "final_winning":
+                    Final_winning(self.config)
                 
             
             

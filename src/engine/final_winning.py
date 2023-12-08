@@ -1,11 +1,11 @@
 import pygame
 import time
 
-class Winning:
+class Final_winning:
     def __init__(self, config):
         self.config = config
         surf = pygame.Surface(self.config.size_of_screen)
-        surf.fill((0, 0, 0))
+        surf.fill((200, 0, 0))
         self.config.screen.blit(surf, (0, 0))
         time.sleep(1)
-        self.config.state = "winning"
+        self.config.state = "final_winning"
