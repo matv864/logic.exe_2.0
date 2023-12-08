@@ -32,6 +32,9 @@ class Painting:
         for obj in self.game_config.level_config["platforms"]:
             self.paint_wire_from_platforms(obj, obj["activate_from_obj_id"])
 
+        for obj in self.game_config.level_config["levers"]:
+            self.paint_wire_from_levers(obj, obj["turn_object"])
+
         self.game_config.screen.blit(self.main_surf, self.game_config.schema_module_location)
 
     def paint_logic_object(self, obj, next_id):
@@ -66,6 +69,18 @@ class Painting:
         start_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
         start_pos = (start_x * self.vw, start_y * self.vh + self.size_logic_y / 2)
         end_pos = (100 * self.vw, obj["y"] * self.vh + self.size_logic_y / 2)
+        if obj["activated"]:
+            color = (0, 250, 0)
+        else:
+            color = (0, 0, 0)
+        pygame.draw.line(self.main_surf, color, start_pos, end_pos, 1)
+
+    def paint_wire_from_levers(self, obj, next_id):
+        end_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
+        end_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
+        start_pos = (0, obj["y"] * self.vh + self.size_logic_y / 2)
+        end_pos = (end_x * self.vw, end_y * self.vh + self.size_logic_y / 2)
+        
         if obj["activated"]:
             color = (0, 250, 0)
         else:
