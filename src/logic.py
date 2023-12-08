@@ -3,7 +3,7 @@
 
 import pygame
 
-from .engine import Playing, Greeting
+from .states import Playing, Greeting, Losing, Winning, Final_winning
 
 from .utils import GameConfig
 
@@ -15,7 +15,7 @@ class Logic:
         pygame.init()
         pygame.mixer.init()
         pygame.display.set_caption("LOGIC2.EXE")
-        self.size_of_screen = (1920, 1200)
+        self.size_of_screen = (1000, 500)
         # window = Window(288, 512)
 
         screen = pygame.display.set_mode(self.size_of_screen)
@@ -32,6 +32,13 @@ class Logic:
                     Greeting(self.config)
                 case "play":
                     Playing(self.config)
+                case "losing":
+                    print(self.config.state)
+                    Losing(self.config)
+                case "winning":
+                    Winning(self.config)
+                case "final_winning":
+                    Final_winning(self.config)
                 
             
             
