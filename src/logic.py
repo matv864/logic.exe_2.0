@@ -33,7 +33,6 @@ class Logic:
                 case "play":
                     Playing(self.config)
                 case "losing":
-                    print(self.config.state)
                     Losing(self.config)
                 case "final_losing":
                     Final_losing(self.config)

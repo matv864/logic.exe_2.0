@@ -8,4 +8,5 @@ class Winning:
         surf.fill((0, 0, 0))
         self.config.screen.blit(surf, (0, 0))
         time.sleep(1)
+        pygame.display.update()
         self.config.state = "winning"

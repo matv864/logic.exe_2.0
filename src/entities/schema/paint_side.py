@@ -12,7 +12,7 @@ class Painting:
 
         self.vw = self.game_config.schema_module_size[0] / 100
         self.vh = self.game_config.schema_module_size[1] / 100
-        self.vc = (self.vw + self.vh) / 2
+        self.vc = min(self.vw, self.vh)
 
         self.size_logic_x = 8 * self.vc
         self.size_logic_y = 8 * self.vc

@@ -11,9 +11,15 @@ class Platform:
         self.apple_pos = 0
         self.max_apple_pos = len(self.platforms)
 
+        self.winning = False
+
     def draw(self) -> None:
+        self.drawing_platforms()
         self.falling_apple()
-        # rotated_image = pygame.transform.rotate(self.image, self.rot)
+        
+
+
+    def drawing_platforms(self):
         main_surf = pygame.Surface(self.game_config.platform_module_size)
         main_surf.fill((200, 70, 20))
 
@@ -44,18 +50,31 @@ class Platform:
 
         self.game_config.screen.blit(main_surf, self.game_config.platform_module_location)
 
+
     def falling_apple(self):
         counter_of_falling = 0
         if self.platforms[self.apple_pos]["activated"]:
             return
+        if self.winning:
+            self.game_config.state = "winning"
+            print("win")
+            return
+            # here need animation of falling to portal or other
         for _ in range(self.apple_pos, self.max_apple_pos):
             if self.platforms[self.apple_pos]["activated"]:
                 if counter_of_falling >= 2:
                     self.game_config.state = "losing"
+                    self.apple_pos = 0
+                    self.game_config.update_level_config()
                     print("lose")
+                    return 
             else:
-                self.apple_pos += 1
+                self.apple_pos = min(self.apple_pos + 1, self.max_apple_pos - 1)
                 counter_of_falling += 1
+
+        if self.apple_pos >= self.max_apple_pos - 1:
+            self.winning = True
+            print("winning")
 
 
         

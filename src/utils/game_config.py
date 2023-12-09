@@ -13,7 +13,7 @@ class GameConfig:
         self.start_time = time.time()
         self.score_now = 0
         self.lifes = 3
-        self.level = 0
+        self.level = 1
 
         self.state = "greeting"
         
@@ -26,8 +26,7 @@ class GameConfig:
 
 
     def update_level_config(self):
-        self.level_config = get_level_config(self.level)
-        self.level += 1
+        self.level_config = get_level_config(self.level - 1)
 
 
     def calculate_new_values(self):
