@@ -3,7 +3,7 @@
 
 import pygame
 
-from .states import Playing, Greeting, Losing, Winning, Final_winning
+from .states import Playing, Greeting, Losing, Winning, Final_winning, Final_losing
 
 from .utils import GameConfig
 
@@ -35,6 +35,8 @@ class Logic:
                 case "losing":
                     print(self.config.state)
                     Losing(self.config)
+                case "final_losing":
+                    Final_losing(self.config)
                 case "winning":
                     Winning(self.config)
                 case "final_winning":
