@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.framenum = 0
         self.image_change_interval = 2*self.vh
 
-        self.rect = self.image.get_rect()
+        # self.rect = self.image.get_rect()
 
         self.player_pos = 0
         self.levers = self.game_config.level_config["levers"]
@@ -29,8 +29,8 @@ class Player(pygame.sprite.Sprite):
 
         # surf_player = pygame.Surface((20, 20))
         # surf_player.fill((255, 255, 255))
-        main_surf.blit(self.image,(self.game_config.player_module_size[0]/6, self.levers[self.player_pos]["y"]*self.vh-3*self.vh))
-        self.move_to(main_surf, 3*self.vh,40*self.vh)
+        # main_surf.blit(self.image,(self.game_config.player_module_size[0]/6, self.levers[self.player_pos]["y"]*self.vh-3*self.vh))
+        # self.move_to(main_surf, 3*self.vh,40*self.vh)
         surf_0 = pygame.Surface((20, 20))
         surf_0.fill((255, 0, 0))
 
@@ -43,19 +43,17 @@ class Player(pygame.sprite.Sprite):
                 main_surf.blit(surf_0, (self.game_config.player_module_size[0]/3, object["y"]*self.vh))
             # print(object["y"]*self.vh)
         # main_surf.blit(surf_player, (self.game_config.player_module_size[0]/3, self.levers[self.player_pos]["y"]*self.vh)) 
-        
-        
-
 
         self.game_config.screen.blit(main_surf, self.game_config.player_module_location)
-    def move_to(self,main_surf, start_pos, end_pos):
-        for i in range(8):
-            self.counter += 1
-            if self.counter == self.image_change_interval:
-                self.current_frame = (self.current_frame + 1) % 2
-                self.image = self.animation[self.current_frame]
-                self.counter = 0
-            time.sleep(1)
+
+    # def move_to(self, main_surf, start_pos, end_pos):
+    #     for i in range(8):
+    #         self.counter += 1
+    #         if self.counter == self.image_change_interval:
+    #             self.current_frame = (self.current_frame + 1) % 2
+    #             self.image = self.animation[self.current_frame]
+    #             self.counter = 0
+    #         time.sleep(1)
         
 
     def move_up(self):

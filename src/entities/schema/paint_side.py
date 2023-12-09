@@ -14,8 +14,8 @@ class Painting:
         self.vh = self.game_config.schema_module_size[1] / 100
         self.vc = (self.vw + self.vh) / 2
 
-        self.size_logic_x = 4 * self.vc
-        self.size_logic_y = 4 * self.vc
+        self.size_logic_x = 8 * self.vc
+        self.size_logic_y = 8 * self.vc
 
 
         self.painting()
@@ -84,7 +84,10 @@ class Painting:
         end_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
         end_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
         start_pos = (0, obj["y"] * self.vh + self.size_logic_y / 2)
-        end_pos = (end_x * self.vw + self.size_logic_x / 2, end_y * self.vh + self.size_logic_y / 2)
+        if self.game_config.level_config["logic_objects"][str(next_id)]["type"] in ["and", "or"]:
+            end_pos = (end_x * self.vw + self.size_logic_x / 2, obj["y"] * self.vh + self.size_logic_y / 2)
+        else:
+            end_pos = (end_x * self.vw + self.size_logic_x / 2, end_y * self.vh + self.size_logic_y / 2)
         
         if obj["activated"]:
             color = (0, 250, 0)
