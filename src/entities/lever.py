@@ -12,8 +12,6 @@ class Player(pygame.sprite.Sprite):
         self.vw = self.game_config.player_module_size[0] / 100
         self.vh = self.game_config.player_module_size[1] / 100
 
-        self.player_avatar = get_image("pngwing.com.png")
-        self.animation = [get_image("anim1.png"), get_image("anim2.png")]
         self.framenum = 0
         self.image_change_interval = 2*self.vh
 
