@@ -34,11 +34,11 @@ class GameConfig:
         vh = self.size_of_screen[1] / 100
         
 
-        self.player_module_size = (20 * vw, 90 * vh)
-        self.player_module_location = (0 * vw, 10 * vh)
+        self.player_module_size = (20 * vw, 70 * vh)
+        self.player_module_location = (0 * vw, 30 * vh)
         
-        self.schema_module_size = (80 * vw, 90 * vh)
-        self.schema_module_location = (0 * vw, 10 * vh)
+        self.schema_module_size = (80 * vw, 70 * vh)
+        self.schema_module_location = (0 * vw, 30 * vh)
 
         self.platform_module_size = (20 * vw, 90 * vh)
         self.platform_module_location = (80 * vw, 10 * vh)
