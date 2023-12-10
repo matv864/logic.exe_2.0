@@ -38,6 +38,7 @@ class Painting:
 
             self.paint_logic_object(obj)
 
+        self.paint_levers()
         self.game_config.screen.blit(self.main_surf, self.game_config.schema_module_location)
 
     def paint_logic_object(self, obj):
@@ -61,7 +62,8 @@ class Painting:
             next_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
             start_pos = (obj["x"] * self.vw + self.size_logic_x / 2, obj["y"] * self.vh + self.size_logic_y / 2)
             end_pos = (next_x * self.vw + self.size_logic_x / 2, next_y * self.vh + self.size_logic_y / 2)
-            
+            if self.game_config.level_config["logic_objects"][str(next_id)]["type"] in ["and", "or"]:
+                end_pos = (next_x * self.vw, start_pos[1])
             if obj["result_signal"]:
                 color = (0, 250, 0)
             else:
@@ -95,6 +97,20 @@ class Painting:
             color = (0, 0, 0)
         pygame.draw.line(self.main_surf, color, start_pos, end_pos, 1)
 
+
+    def paint_levers(self):
+        levers = self.game_config.level_config["levers"]
+        surf_0 = pygame.Surface((self.size_logic_x, self.size_logic_y))
+        surf_0.fill((255, 0, 0))
+
+        surf_1 = pygame.Surface((self.size_logic_x, self.size_logic_y))
+        surf_1.fill((0, 255, 0))
+
+        for object in levers:
+            if object["activated"]:
+                self.main_surf.blit(surf_1, (0, object["y"]*self.vh)) 
+            else:
+                self.main_surf.blit(surf_0, (0, object["y"]*self.vh)) 
 
 # painting logic object
     def paint_node(self, x, y, activated):
