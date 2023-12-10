@@ -37,8 +37,8 @@ class GameConfig:
         self.player_module_size = (20 * vw, 90 * vh)
         self.player_module_location = (0 * vw, 10 * vh)
         
-        self.schema_module_size = (60 * vw, 90 * vh)
-        self.schema_module_location = (20 * vw, 10 * vh)
+        self.schema_module_size = (80 * vw, 90 * vh)
+        self.schema_module_location = (0 * vw, 10 * vh)
 
         self.platform_module_size = (20 * vw, 90 * vh)
         self.platform_module_location = (80 * vw, 10 * vh)
