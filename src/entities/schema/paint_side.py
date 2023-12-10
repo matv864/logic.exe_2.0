@@ -49,6 +49,12 @@ class Painting:
                 self.paint_node(obj["x"], obj["y"], obj["result_signal"])
             case "splitter":
                 self.paint_node(obj["x"], obj["y"], obj["result_signal"])
+            case "not":
+                pass
+            case "or":
+                pass
+            case "and":
+                pass
             case _:
                 surf = pygame.Surface((self.size_logic_x, self.size_logic_y))
                 surf.fill((100, 50, 200))
