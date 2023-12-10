@@ -15,7 +15,7 @@ class Logic:
         pygame.init()
         pygame.mixer.init()
         pygame.display.set_caption("LOGIC2.EXE")
-        self.size_of_screen = (1000, 500)
+        self.size_of_screen = (1920, 1080)
         # window = Window(288, 512)
 
         screen = pygame.display.set_mode(self.size_of_screen)
