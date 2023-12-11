@@ -1,5 +1,7 @@
 import pygame
 
+COLOR_BACKGROUND = (23, 28, 25)
+
 class Platform:
     def __init__(self, config):
         self.game_config = config
@@ -21,7 +23,7 @@ class Platform:
 
     def drawing_platforms(self):
         main_surf = pygame.Surface(self.game_config.platform_module_size)
-        main_surf.fill((200, 70, 20))
+        main_surf.fill(COLOR_BACKGROUND)
 
         
         surf0 = pygame.Surface((15, 15))

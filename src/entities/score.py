@@ -2,7 +2,7 @@ import pygame
 import time
 from pathlib import Path
 
-from ..utils import get_fonts
+from ..utils import get_image, get_fonts
  
  
 class Score: 
@@ -27,15 +27,16 @@ class Score:
         self.time_from_start = int(real_time_from_start) 
  
     def draw(self) -> None: 
-        self.update_time() 
-        # rotated_image = pygame.transform.rotate(self.image, self.rot) 
-        main_surf = pygame.Surface(self.game_config.score_module_size) 
-        main_surf.fill((40, 70, 255)) 
+        self.update_time()
+        maket = get_image("scoreboard_maket.png")
+
+        # main_surf = pygame.Surface(self.game_config.score_module_size) 
+        # main_surf.fill((40, 70, 255)) 
  
-        self.score = max(0, self.start_score - self.time_from_start) 
-        self.draw_score(main_surf) 
+        # self.score = max(0, self.start_score - self.time_from_start) 
+        # self.draw_score(main_surf) 
  
-        self.game_config.screen.blit(main_surf, self.game_config.score_module_location) 
+        self.game_config.screen.blit(maket, self.game_config.score_module_location) 
  
     def get_oct_cords(self,start_x,start_y):
         return [[start_x, start_y+10*self.vh], [start_x, start_y+60*self.vh-10*self.vh], 

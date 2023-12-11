@@ -29,7 +29,6 @@ def get_int(st):
 
 def get_level_config(level_id: int) -> dict:
     assets = Path(Path.cwd() / "assets" / "levels")
-    print(*assets.iterdir())
     levels = sorted(assets.iterdir(), key=get_int)
     if level_id < len(levels):
         level_filename = levels[level_id]

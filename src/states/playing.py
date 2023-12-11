@@ -32,13 +32,6 @@ class Playing:
             self.score.draw()
             
             pygame.display.update()
-            # need to add check to win or new level
-            # 1 - win, 0 - lose
-            if self.check_to_win():
-                print("win")
-            if self.check_to_lose():
-                self.losing()
-                break
 
             clock.tick(self.config.fps)
 
@@ -57,18 +50,6 @@ class Playing:
         # need to add mouse click how active lever
         if event.key in [K_RETURN, K_SPACE]:
             self.player.activate()
-        
-    def check_to_win(self):
-        pass
-    
-
-    def check_to_lose(self):
-        pass
-    
-    def losing(self):
-        pass
-        
-
 
     def check_quit_event(self, event):
         if event.type == QUIT:
