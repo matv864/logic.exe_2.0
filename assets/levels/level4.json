@@ -1,0 +1,178 @@
+
+{
+    "levers":
+    [
+        {
+            "y": 0,
+            "activated": false,
+            "turn_object": 0
+        },
+        {
+            "y": 15,
+            "activated": false,
+            "turn_object": 1
+        },
+        {
+            "y": 30,
+            "activated": false,
+            "turn_object": 2
+        },
+        {
+            "y": 40,
+            "activated": false,
+            "turn_object": 2
+        },
+        {
+            "y": 55,
+            "activated": false,
+            "turn_object": 3
+        },
+        {
+            "y": 70,
+            "activated": false,
+            "turn_object": 4
+        },
+        {
+            "y": 80,
+            "activated": false,
+            "turn_object": 4
+        }
+    ],
+
+    "platforms":
+    [
+        {
+            "y": 0,
+            "activated": true,
+            "activate_from_obj_id": 0
+        },
+        {
+            "y": 15,
+            "activated": false,
+            "activate_from_obj_id": 10
+        },
+        {
+            "y": 35,
+            "activated": true,
+            "activate_from_obj_id": 11
+        },
+        {
+            "y": 55,
+            "activated": true,
+            "activate_from_obj_id": 8
+        },
+        {
+            "y": 75,
+            "activated": true,
+            "activate_from_obj_id": 12
+        }
+    ],
+    
+    
+    "logic_objects":{
+        "0": {
+            "type": "not",
+            "x": 8,
+            "y": 0,
+            "turn_object": -99,
+            "activated": {},
+            "result_signal": false
+        },
+        "1": {
+            "type": "not",
+            "x": 8,
+            "y": 15,
+            "turn_object": 10,
+            "activated": {},
+            "result_signal": false
+        },
+        "2": {
+            "type": "and",
+            "x": 8,
+            "y": 35,
+            "turn_object": 6,
+            "activated": {},
+            "result_signal": false
+        },
+        "3": {
+            "type": "not",
+            "x": 8,
+            "y": 55,
+            "turn_object": 8,
+            "activated": {},
+            "result_signal": false
+        },
+        "4": {
+            "type": "or",
+            "x": 8,
+            "y": 75,
+            "turn_object": 9,
+            "activated": {},
+            "result_signal": false
+        },
+        "5": {
+            "type": "node",
+            "x": 50,
+            "y": 17,
+            "turn_object": 10,
+            "activated": {},
+            "result_signal": false
+        },
+        "6": {
+            "type": "splitter",
+            "x": 50,
+            "y": 35,
+            "turn_object": [5,11],
+            "activated": {},
+            "result_signal": false
+        },
+        "7": {
+            "type": "node",
+            "x": 50,
+            "y": 37,
+            "turn_object": 11,
+            "activated": {},
+            "result_signal": false
+        },
+        "8": {
+            "type": "splitter",
+            "x": 50,
+            "y": 55,
+            "turn_object": [-99,7],
+            "activated": {},
+            "result_signal": false
+        },
+        "9": {
+            "type": "not",
+            "x": 40,
+            "y": 75,
+            "turn_object": 12,
+            "activated": {},
+            "result_signal": false
+        },
+        "10": {
+            "type": "and",
+            "x": 65,
+            "y": 15,
+            "turn_object": -99,
+            "activated": {},
+            "result_signal": false
+        },
+        "11": {
+            "type": "and",
+            "x": 65,
+            "y": 35,
+            "turn_object": -99,
+            "activated": {},
+            "result_signal": false
+        },
+        "12": {
+            "type": "not",
+            "x": 70,
+            "y": 75,
+            "turn_object": -99,
+            "activated": {},
+            "result_signal": false
+        }
+    }
+}
