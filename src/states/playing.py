@@ -2,7 +2,7 @@ import sys
 import time
 import pygame
 
-from pygame.locals import QUIT, K_DOWN, K_UP, K_w, K_s, K_RETURN, K_SPACE
+from pygame.locals import QUIT, K_LEFT, K_RIGHT, K_a, K_d, K_RETURN, K_SPACE
 from ..entities import Background, Player, Score, Schema, Platform
 
 class Playing:
@@ -19,7 +19,7 @@ class Playing:
             for event in pygame.event.get():
                 self.check_quit_event(event)
                 if event.type == pygame.KEYDOWN:
-                    self.handle_up_down(event)
+                    self.handle_lefr_right(event)
                     self.handle_enter_click(event)
             
             if self.config.state != "play":
@@ -36,14 +36,13 @@ class Playing:
             clock.tick(self.config.fps)
 
 
-    def handle_up_down(self, event):
+    def handle_lefr_right(self, event):
         # print(event.key)
-        # глюки с русскоязычной раскладкой и стрелочками нампада
-        if event.key in [K_UP, K_w, 1094, 1073741920]:
-            self.player.move_up()
+        if event.key in [K_LEFT, K_a, 1073741916]:
+            self.player.move_left()
             return
-        if event.key in [K_DOWN, K_s, 1099, 1073741914]:
-            self.player.move_down()
+        if event.key in [K_RIGHT, K_d, 1073741918]:
+            self.player.move_right()
             return
 
     def handle_enter_click(self, event):

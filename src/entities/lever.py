@@ -25,57 +25,64 @@ class Player(pygame.sprite.Sprite):
         return pygame.transform.scale(image, (image.get_width() * COEF_RESIZE_IMG, image.get_height() * COEF_RESIZE_IMG))
     
     def draw(self) -> None:
-        # rotated_image = pygame.transform.rotate(self.image, self.rot)
+        self.draw_background()
+        self.draw_girl()
+        self.draw_levers()
+        
+
+
+        self.game_config.screen.blit(self.main_surf, self.game_config.player_module_location)
+
+
+    def draw_background(self):
         self.main_surf = pygame.Surface(self.game_config.player_module_size)
         self.main_surf.fill(COLOR_BACKGROUND)
         midline = pygame.Surface((100 * self.vw, 5 * self.vh))
         midline.fill(COLOR_MIDLINE)
         self.main_surf.blit(midline, (0 * self.vw, 96 * self.vh))
+
+    def draw_girl(self):
         girl = get_image("girl.png")
         girl = self.resize_image(girl)
         self.main_surf.blit(girl, (5 * self.vw, 95 * self.vh - girl.get_height()))
 
-        # surf_player = pygame.Surface((20, 20))
-        # surf_player.fill((255, 255, 255))
-        # main_surf.blit(self.image,(self.game_config.player_module_size[0]/6, self.levers[self.player_pos]["y"]*self.vh-3*self.vh))
-        # self.move_to(main_surf, 3*self.vh,40*self.vh)
+    def draw_levers(self):
+        now_pos = first_pos = 15
+
+        now_player_pos = first_pos + 10 * self.player_pos
+        player_surf = pygame.Surface((30, 30))
+        player_surf.fill((0, 0, 0))
+        self.main_surf.blit(player_surf, (now_player_pos * self.vw, 50 * self.vh)) 
+
+
         surf_0 = pygame.Surface((20, 20))
         surf_0.fill((255, 0, 0))
 
         surf_1 = pygame.Surface((20, 20))
         surf_1.fill((0, 255, 0))
 
-        count_levers = len(self.levers)
-        x_for_levels = 100 / count_levers
-        for num, object in enumerate(self.levers):
+        for object in self.levers:
             if object["activated"]:
-                self.main_surf.blit(surf_1, (x_for_levels * num * self.vw, 50 * self.vh)) 
+                self.main_surf.blit(surf_1, (now_pos * self.vw, 50 * self.vh)) 
             else:
-                self.main_surf.blit(surf_0, (x_for_levels * num * self.vw, 50 * self.vh))
-            # print(object["y"]*self.vh)
-        # main_surf.blit(surf_player, (self.game_config.player_module_size[0]/3, self.levers[self.player_pos]["y"]*self.vh)) 
+                self.main_surf.blit(surf_0, (now_pos * self.vw, 50 * self.vh))
+            now_pos += 10
 
-        self.game_config.screen.blit(self.main_surf, self.game_config.player_module_location)
-
-    # def move_to(self, main_surf, start_pos, end_pos):
-    #     for i in range(8):
-    #         self.counter += 1
-    #         if self.counter == self.image_change_interval:
-    #             self.current_frame = (self.current_frame + 1) % 2
-    #             self.image = self.animation[self.current_frame]
-    #             self.counter = 0
-    #         time.sleep(1)
         
 
-    def move_up(self):
+
+
+    # logic part ---------------------------
+    def move_left(self):
         self.player_pos = max(0, self.player_pos - 1)
 
-    def move_down(self):
+    def move_right(self):
         self.player_pos = min(len(self.levers)-1, self.player_pos + 1)
 
     def activate(self):
         self.levers[self.player_pos]["activated"] = not(self.levers[self.player_pos]["activated"])
         print(f"activated {self.player_pos}")
+    # logic part end ------------------------
     
 
     '''
