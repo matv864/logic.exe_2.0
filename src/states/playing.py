@@ -38,10 +38,11 @@ class Playing:
 
     def handle_lefr_right(self, event):
         # print(event.key)
-        if event.key in [K_LEFT, K_a, 1073741916]:
+        # + русские кнопки
+        if event.key in [K_LEFT, K_a, 1073741916, 1092]:
             self.player.move_left()
             return
-        if event.key in [K_RIGHT, K_d, 1073741918]:
+        if event.key in [K_RIGHT, K_d, 1073741918, 1074]:
             self.player.move_right()
             return
 
@@ -54,3 +55,4 @@ class Playing:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+
