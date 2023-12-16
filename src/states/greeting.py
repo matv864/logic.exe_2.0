@@ -13,25 +13,28 @@ class Greeting:
         self.game_config = config
         self.main_surf = pygame.Surface(self.game_config.size_of_screen)
         self.not_clicked = True
-        self.darkness = 100
-        self.step_of_darkness = 5
+        self.darkness = 0
+        self.step_of_darkness = 2
         
-        # while self.darkness > self.step_of_darkness:
-        #     self.make_less_dark()
-        #     time.sleep(1)
-        self.draw_instruction()
+        # less of darkness
+        while self.darkness < 100:
+            self.darkness += self.step_of_darkness
+            self.draw_intro()
+
+        # self.draw_instruction()
 
         while self.not_clicked:
             for event in pygame.event.get():
                 self.check_quit_event(event)
                 self.check_tap_anything(event)
 
-        # while self.darkness < 100:
-        #     self.make_more_dark()
-        
-
+        while self.darkness > 0:
+            self.darkness -= self.step_of_darkness
+            self.draw_intro()
 
         self.game_config.state = "play"
+
+
 
     def check_quit_event(self, event):
         if event.type == QUIT:
@@ -50,30 +53,19 @@ class Greeting:
         sizes = (width_x, width_y)
         return pygame.transform.scale(image, sizes)
 
-    def draw_instruction(self):
-        instruction = get_image("intro.png")
-        instruction = self.resize_image(instruction)
-        self.game_config.screen.blit(instruction, (0, 0))
+    def draw_intro(self):
+        intro = get_image("intro.png", transparency=True)
+        intro = self.resize_image(intro)
         
-        # shade_surface = pygame.Surface(self.game_config.size_of_screen, pygame.SRCALPHA)
-        # shade_color = (0, 0, 0, int(self.darkness * 2.55))
-        # shade_surface.fill(shade_color)
-
-        # self.game_config.screen.blit(shade_surface, (100, 100), special_flags=pygame.BLEND_RGBA_MULT)
+        transparent_image = pygame.Surface(self.game_config.size_of_screen, pygame.SRCALPHA)
+        shade_color = (255, 255, 255, int(self.darkness * 2.55))
+        transparent_image.fill(shade_color)  
+        transparent_image.blit(intro, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+        self.game_config.screen.fill((0, 0, 0)) 
+        self.game_config.screen.blit(transparent_image, (0, 0))
 
         pygame.display.flip()
 
-
-    # def make_less_dark(self):
-    #     self.darkness -= self.step_of_darkness
-    #     self.draw_instruction()
-    #     # print(self.darkness)
-
-    # def make_more_dark(self):
-    #     self.darkness += self.step_of_darkness
-    #     self.draw_instruction()
-    #     # print(self.darkness)
-    
 
 
 

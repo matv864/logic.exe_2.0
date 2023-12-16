@@ -8,9 +8,11 @@ def get_fonts(name: str, size: int = 24) -> pygame.font.Font:
     font = pygame.font.Font(path_to_font, size) 
     return font
 
-def get_image(name: str) -> pygame.image:
+def get_image(name: str, transparency: bool = False) -> pygame.image:
     path_to_image = Path(Path.cwd() / "assets" / "sprites"/ name) 
     image = pygame.image.load(path_to_image)
+    if transparency:
+        image = image.convert_alpha()
     return image
 
 def get_gif(name: str) -> pygame.image:
