@@ -22,9 +22,6 @@ class Painting:
         self.vh = self.game_config.schema_module_size[1] / 100
         self.vc = min(self.vw, self.vh)
 
-        self.size_logic_x = 13 * 6
-        self.size_logic_y = 11 * 6
-
 
         self.painting()
 
@@ -64,7 +61,7 @@ class Painting:
             case "and":
                 self.paint_and(obj["x"], obj["y"])
             case _:
-                # surf = pygame.Surface((self.size_logic_x, self.size_logic_y))
+                # surf = pygame.Surface((self.game_config.size_logic_x, self.game_config.size_logic_y))
                 # surf.fill((200, 200, 200))
                 # self.main_surf.blit(surf, (obj["x"] * self.vw, obj["y"] * self.vh))
                 pass
@@ -75,8 +72,8 @@ class Painting:
             # start_pos = (obj["x"] * self.vw, obj["y"] * self.vh)
             next_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
             next_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
-            start_pos = (obj["x"] * self.vw + self.size_logic_x / 2, obj["y"] * self.vh + self.size_logic_y / 2)
-            end_pos = (next_x * self.vw + self.size_logic_x / 2, next_y * self.vh + self.size_logic_y / 2)
+            start_pos = (obj["x"] * self.vw + self.game_config.size_logic_x / 2, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
+            end_pos = (next_x * self.vw + self.game_config.size_logic_x / 2, next_y * self.vh + self.game_config.size_logic_y / 2)
             if self.game_config.level_config["logic_objects"][str(next_id)]["type"] in ["and", "or"]:
                 end_pos = (next_x * self.vw, start_pos[1])
             if obj["result_signal"]:
@@ -89,8 +86,8 @@ class Painting:
     def paint_wire_from_platforms(self, obj, next_id):
         start_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
         start_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
-        start_pos = (start_x * self.vw + self.size_logic_x / 2, start_y * self.vh + self.size_logic_y / 2)
-        end_pos = (100 * self.vw, obj["y"] * self.vh + self.size_logic_y / 2)
+        start_pos = (start_x * self.vw + self.game_config.size_logic_x / 2, start_y * self.vh + self.game_config.size_logic_y / 2)
+        end_pos = (100 * self.vw, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
         if obj["activated"]:
             color = COLOR_WIRE_ON
         else:
@@ -100,11 +97,11 @@ class Painting:
     def paint_wire_from_levers(self, obj, next_id):
         end_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
         end_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
-        start_pos = (0, obj["y"] * self.vh + self.size_logic_y / 2)
+        start_pos = (0, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
         if self.game_config.level_config["logic_objects"][str(next_id)]["type"] in ["and", "or"]:
-            end_pos = (end_x * self.vw + self.size_logic_x / 2, obj["y"] * self.vh + self.size_logic_y / 2)
+            end_pos = (end_x * self.vw + self.game_config.size_logic_x / 2, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
         else:
-            end_pos = (end_x * self.vw + self.size_logic_x / 2, end_y * self.vh + self.size_logic_y / 2)
+            end_pos = (end_x * self.vw + self.game_config.size_logic_x / 2, end_y * self.vh + self.game_config.size_logic_y / 2)
         
         if obj["activated"]:
             color = COLOR_WIRE_ON
@@ -115,7 +112,7 @@ class Painting:
 
     def paint_levers(self):
         levers = self.game_config.level_config["levers"]
-        surf = pygame.Surface((self.size_logic_x / 2, self.size_logic_y / 2))
+        surf = pygame.Surface((self.game_config.size_logic_x / 2, self.game_config.size_logic_y / 2))
         surf.fill((150, 0, 200))
 
 
@@ -131,21 +128,21 @@ class Painting:
 
     def paint_not(self, x, y):
         position = (x * self.vw, y * self.vh)
-        # print(self.size_logic_x, self.size_logic_y)
+        # print(self.game_config.size_logic_x, self.game_config.size_logic_y)
         image_not = get_image("logic_objects/not.png")
         image_not = self.resize_image(image_not)
         self.main_surf.blit(image_not, position)
 
     def paint_or(self, x, y):
         position = (x * self.vw, y * self.vh)
-        # print(self.size_logic_x, self.size_logic_y)
+        # print(self.game_config.size_logic_x, self.game_config.size_logic_y)
         image_or = get_image("logic_objects/plus.png")
         image_or = self.resize_image(image_or)
         self.main_surf.blit(image_or, position)
 
     def paint_and(self, x, y):
         position = (x * self.vw, y * self.vh)
-        # print(self.size_logic_x, self.size_logic_y)
+        # print(self.game_config.size_logic_x, self.game_config.size_logic_y)
         image_and = get_image("logic_objects/multi.png")
         image_and = self.resize_image(image_and)
         self.main_surf.blit(image_and, position)

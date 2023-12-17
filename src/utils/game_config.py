@@ -23,6 +23,7 @@ class GameConfig:
         # calculate sizes of screen modules
         self.size_of_screen = size_of_screen
         self.calculate_new_values()
+        self.set_sizes_logic_objects()
 
 
     def update_level_config(self):
@@ -45,6 +46,10 @@ class GameConfig:
 
         self.score_module_size = (60 * vw, 10 * vh)
         self.score_module_location = (20 * vw, 0 * vh)
+
+    def set_sizes_logic_objects(self):
+        self.size_logic_x = 13 * 6
+        self.size_logic_y = 11 * 6
 
         
 
