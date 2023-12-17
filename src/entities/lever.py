@@ -83,7 +83,6 @@ class Player(pygame.sprite.Sprite):
 
     def activate(self):
         self.levers[self.player_pos]["activated"] = not(self.levers[self.player_pos]["activated"])
-        print(f"activated {self.player_pos}")
     # logic part end ------------------------
     
 

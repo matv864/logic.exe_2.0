@@ -1,0 +1,1 @@
+{"level": 1, "lifes": 3, "time_from_start": 0}

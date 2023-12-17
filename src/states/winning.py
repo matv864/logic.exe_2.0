@@ -20,6 +20,7 @@ class Winning:
         self.config.screen.blit(surf, (0, 0))
         time.sleep(1)
         pygame.display.update()
+        self.config.saving()
         self.config.state = "play"
 
     def full_winning(self):

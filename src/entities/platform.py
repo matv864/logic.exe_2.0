@@ -42,8 +42,6 @@ class Platform:
             self.game_config.state = "losing"
 
             self.game_config.screen.blit(self.main_surf, self.game_config.platform_module_location)
-            pygame.display.flip()
-            time.sleep(5)
             return
 
         self.draw_background()
@@ -53,7 +51,6 @@ class Platform:
 
 
         self.game_config.screen.blit(self.main_surf, self.game_config.platform_module_location)
-        pygame.display.flip()
 
         
         
@@ -102,6 +99,7 @@ class Platform:
 
         # crystall land or situated on activated platform
         if self.counter_skipped_platforms <= 1:
+            self.counter_skipped_platforms = 0
             # crystall have good falling && check to win level
             if self.pos_low_platform == self.max_crystall_pos:
                 self.game_config.state = "winning"

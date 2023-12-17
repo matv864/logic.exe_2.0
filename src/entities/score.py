@@ -2,8 +2,12 @@ import pygame
 import time
 from pathlib import Path
 
-from ..utils import get_image, get_fonts
- 
+from ..utils import get_image, get_fonts, get_record
+
+
+START_SCORE = 1000
+COEF_SCORE_LIFE = 100
+MAX_LIFES = 3
  
 class Score: 
     def __init__(self, config): 
@@ -14,60 +18,38 @@ class Score:
         self.vw = self.game_config.score_module_size[0] / 100 
         self.vh = self.game_config.score_module_size[1] / 100 
         self.vc = (self.vh + self.vw) / 2
-        self.font = get_fonts("FiraSans-Regular.ttf", int(6 * self.vc))
-
-        self.score = 0 
-        self.start_score = 1000 
+        # self.font = get_fonts("firasans.ttf", int(6 * self.vc))
+        self.score = 0
  
-         
  
     def update_time(self): 
         time_now = time.time() 
         real_time_from_start = time_now - self.game_config.start_time 
-        self.time_from_start = int(real_time_from_start) 
+        self.time_from_start = int(real_time_from_start)
+
+    def update_score(self):
+        lost_lifes = MAX_LIFES - self.game_config.lifes
+        self.score = START_SCORE - self.time_from_start  - COEF_SCORE_LIFE * lost_lifes
  
     def draw(self) -> None: 
         self.update_time()
+        self.update_score()
+
         maket = get_image("scoreboard_maket.png")
 
-        # main_surf = pygame.Surface(self.game_config.score_module_size) 
+        main_surf = pygame.Surface(self.game_config.score_module_size) 
+        main_surf.blit(maket, (0, 0))
         # main_surf.fill((40, 70, 255)) 
  
         # self.score = max(0, self.start_score - self.time_from_start) 
         # self.draw_score(main_surf) 
  
-        self.game_config.screen.blit(maket, self.game_config.score_module_location) 
- 
-    def get_oct_cords(self,start_x,start_y):
-        return [[start_x, start_y+10*self.vh], [start_x, start_y+60*self.vh-10*self.vh], 
-                [start_x+10*self.vh,start_y+60*self.vh], [start_x+17*self.vw-10*self.vh, start_y+60*self.vh],
-                [start_x+17*self.vw,start_y+60*self.vh-10*self.vh],[start_x+17*self.vw,start_y+10*self.vh],
-                [start_x+17*self.vw-10*self.vh,start_y],[start_x+10*self.vh,start_y]]
- 
-    def draw_frame(self,surf,start_x,start_y):
-        pygame.draw.polygon(surf, (0,0,0), 
-                    self.get_oct_cords(start_x+1*self.vw,start_y+1*self.vw))
-        pygame.draw.polygon(surf, (255,255,255), 
-                    self.get_oct_cords(start_x,start_y))
-        pygame.draw.polygon(surf, (0,0,0), 
-                    self.get_oct_cords(start_x,start_y),1)
-    def draw_counter(self,surface,text,x,y):
-        self.draw_frame(surface,x,y)
-        img = self.font.render(text, True, "red") 
-        surface.blit(img, (x+2*self.vw, y+32*self.vh-3*self.vc)) 
+        self.game_config.screen.blit(main_surf, self.game_config.score_module_location) 
 
-    def draw_score(self, main_surf): 
-        # self.game_config.level 
-        # self.game_config.lifes 
-        # self.score
-        self.draw_counter(main_surf,f"level: {self.game_config.level}",3*self.vw,23*self.vh)
-        self.draw_counter(main_surf,f"lifes: {self.game_config.lifes}",39*self.vw,23*self.vh)
-        self.draw_counter(main_surf,f"time: {self.score}",78*self.vw,23*self.vh)
+
+
+
+
+
+    
  
- 
-        ''' 
-        так, тз этого модуля 
-        надо красиво отверстать скор борд 
-        (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh) 
-         
-        '''

@@ -47,9 +47,7 @@ class Greeting:
             
     
     def resize_image(self, image):
-        width_x, width_y = self.game_config.size_of_screen
-        sizes = (width_x, width_y)
-        return pygame.transform.scale(image, sizes)
+        return pygame.transform.scale(image, self.game_config.size_of_screen)
 
     def draw_intro(self):
         intro = get_image("intro.png", transparency=True)

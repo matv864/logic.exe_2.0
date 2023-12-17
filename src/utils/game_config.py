@@ -2,6 +2,7 @@ import pygame
 import time
 
 from .working_with_assets import get_level_config
+from .working_with_result import save_result, set_saving_result
 
 
 class GameConfig:
@@ -10,11 +11,7 @@ class GameConfig:
         self.fps = 30
 
         # for score board
-        self.start_time = time.time()
-        self.score_now = 0
-        self.lifes = 3
-        self.level = 1
-
+        self.set_saving_in_game()
         self.state = "greeting"
         
         self.update_level_config()
@@ -28,6 +25,9 @@ class GameConfig:
 
     def update_level_config(self):
         self.level_config = get_level_config(self.level - 1)
+
+    def update_time(self):
+        self.start_time = time.time()
 
 
     def calculate_new_values(self):
@@ -50,6 +50,23 @@ class GameConfig:
     def set_sizes_logic_objects(self):
         self.size_logic_x = 13 * 6
         self.size_logic_y = 11 * 6
+
+    def full_losing(self):
+        self.level = 1
+        self.lifes = 3
+        self.start_time = time.time()
+        self.update_level_config()
+
+        self.saving()
+        
+
+    def saving(self):
+        save_result(self)
+    
+    def set_saving_in_game(self):
+        set_saving_result(self)
+    
+    
 
         
 

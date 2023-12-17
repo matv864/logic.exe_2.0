@@ -25,13 +25,13 @@ def get_audio(name: str) -> pygame.mixer.Sound:
     sound = pygame.mixer.Sound(path_to_sound)
     return sound
 
-def get_int(st):
+def get_int_from_filename(st: Path) -> int:
     st = str(st).split("level")[-1]
     return int(st.replace(".json", ""))
 
 def get_level_config(level_id: int) -> dict:
     assets = Path(Path.cwd() / "assets" / "levels")
-    levels = sorted(assets.iterdir(), key=get_int)
+    levels = sorted(assets.iterdir(), key=get_int_from_filename)
     if level_id < len(levels):
         level_filename = levels[level_id]
         with level_filename.open() as F:

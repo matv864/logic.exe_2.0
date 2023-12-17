@@ -7,12 +7,13 @@ class Losing:
         
 
         self.game_config.lifes -= 1
-        print(self.game_config.lifes)
 
         if self.game_config.lifes == 0:
+            self.game_config.full_losing()
             self.full_losing()
         else:
             self.temp_death()
+        self.game_config.saving()
         
 
     def temp_death(self):

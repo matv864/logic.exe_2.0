@@ -31,7 +31,7 @@ class Playing:
             self.platform.draw()
             self.score.draw()
             
-            pygame.display.update()
+            pygame.display.flip()
 
             clock.tick(self.config.fps)
 
