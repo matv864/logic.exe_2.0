@@ -35,14 +35,21 @@ class Platform:
 
 
     def draw(self) -> None:
+        self.draw_background()
+        self.drawing_platforms()
         if self.crystall_is_broken:
             self.draw_broken_crystall()
             self.game_config.state = "losing"
-        else:
-            self.draw_background()
-            self.drawing_platforms()
-            self.falling_crystall()
-            self.draw_crystall()
+
+            self.game_config.screen.blit(self.main_surf, self.game_config.platform_module_location)
+            pygame.display.flip()
+            time.sleep(5)
+            return
+
+        self.draw_background()
+        self.drawing_platforms()
+        self.falling_crystall()
+        self.draw_crystall()
 
 
         self.game_config.screen.blit(self.main_surf, self.game_config.platform_module_location)
@@ -56,8 +63,8 @@ class Platform:
 
     def draw_crystall(self):
         crystall = get_image("crystall.png")
-        crystall = self.resize_image(crystall, 30, 30)
-        self.main_surf.blit(crystall, (self.x_position * self.vw, self.y_position * self.vh)) 
+        crystall = self.resize_image(crystall, 50, 50)
+        self.main_surf.blit(crystall, (self.x_position * self.vw, (self.y_position - 3) * self.vh)) 
 
     def draw_broken_crystall(self):
         crystall = get_image("crystall.png")
@@ -105,38 +112,6 @@ class Platform:
         
 
 
-
-
-        
-
-
-
-    # def falling_crystall(self):
-    #     last_pos = self.platforms[self.crystall_pos]["y"]
-    #     counter_of_falling = 0
-    #     if self.platforms[self.crystall_pos]["activated"]:
-    #         self.now_y = self.target_y = last_pos
-    #         self.draw_crystall()
-    #     if self.winning:
-    #         self.game_config.state = "winning"
-    #         return
-    #         # here need animation of falling to portal or other
-    #     for _ in range(self.crystall_pos, self.max_crystall_pos):
-    #         if self.platforms[self.crystall_pos]["activated"]:
-    #             if counter_of_falling >= 2:
-    #                 self.game_config.state = "losing"
-    #                 return 
-    #         else:
-    #             self.crystall_pos = min(self.crystall_pos + 1, self.max_crystall_pos - 1)
-    #             counter_of_falling += 1
-
-    #     if self.crystall_pos >= self.max_crystall_pos - 1:
-    #         self.winning = True
-    #     now_pos = self.platforms[self.crystall_pos]["y"]
-    #     self.now_y = last_pos
-    #     self.target_y = now_pos
-    #     self.draw_animation_falling(last_pos, now_pos)
-    
         
     def resize_image(self, image, x, y):
         return pygame.transform.scale(image, (x, y))
