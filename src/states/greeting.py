@@ -48,8 +48,6 @@ class Greeting:
     
     def resize_image(self, image):
         width_x, width_y = self.game_config.size_of_screen
-        width_x = int(width_x * 0.98)
-        width_y = int(width_y * 0.98)
         sizes = (width_x, width_y)
         return pygame.transform.scale(image, sizes)
 
