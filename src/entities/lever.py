@@ -21,7 +21,9 @@ class Player(pygame.sprite.Sprite):
         self.levers = self.game_config.level_config["levers"]
 
 
-    def resize_image(self, image):
+    def resize_image(self, image, sizes=None):
+        if sizes:
+            return pygame.transform.scale(image, sizes)    
         return pygame.transform.scale(image, (image.get_width() * COEF_RESIZE_IMG, image.get_height() * COEF_RESIZE_IMG))
     
     def draw(self) -> None:
@@ -51,21 +53,21 @@ class Player(pygame.sprite.Sprite):
 
         now_player_pos = first_pos + 10 * self.player_pos
         player_surf = pygame.Surface((30, 30))
-        player_surf.fill((0, 0, 0))
+        player_surf.fill((255, 255, 255))
         self.main_surf.blit(player_surf, (now_player_pos * self.vw, 50 * self.vh)) 
 
 
-        surf_0 = pygame.Surface((20, 20))
-        surf_0.fill((255, 0, 0))
+        lever_off = get_image("lever_off.png")
+        lever_off = self.resize_image(lever_off)
 
-        surf_1 = pygame.Surface((20, 20))
-        surf_1.fill((0, 255, 0))
+        lever_on = get_image("lever_on.png")
+        lever_on = self.resize_image(lever_on)
 
         for object in self.levers:
             if object["activated"]:
-                self.main_surf.blit(surf_1, (now_pos * self.vw, 50 * self.vh)) 
+                self.main_surf.blit(lever_off, (now_pos * self.vw, 50 * self.vh)) 
             else:
-                self.main_surf.blit(surf_0, (now_pos * self.vw, 50 * self.vh))
+                self.main_surf.blit(lever_on, (now_pos * self.vw, 50 * self.vh))
             now_pos += 10
 
         
