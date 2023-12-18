@@ -1,6 +1,7 @@
 import pygame
 import time
 
+
 class Final_winning:
     def __init__(self, config):
         self.config = config

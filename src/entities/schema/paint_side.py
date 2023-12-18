@@ -9,19 +9,19 @@ COLOR_WIRE_ON = (133, 222, 126)
 WIRE_WIDTH = 5
 COEF_RESIZE_IMG = 5
 
-    
 
 class Painting:
     def __init__(self, game_config):
         self.game_config = game_config
 
-        self.main_surf = pygame.Surface(self.game_config.schema_module_size) 
-        self.main_surf.fill(COLOR_BACKGROUND) 
+        self.main_surf = pygame.Surface(self.game_config.schema_module_size)
+        self.main_surf.fill(COLOR_BACKGROUND)
 
         self.vw = self.game_config.schema_module_size[0] / 100
         self.vh = self.game_config.schema_module_size[1] / 100
         self.vc = min(self.vw, self.vh)
 
+        self.logic_objects = self.game_config.level_config["logic_objects"]
 
         self.painting()
 
@@ -34,7 +34,7 @@ class Painting:
 
         for obj in self.game_config.level_config["logic_objects"].values():
             type_logic = obj["type"]
-            
+
             if type_logic == "splitter":
                 for next_id in obj["turn_object"]:
                     self.paint_logic_wire(obj, next_id)
@@ -44,7 +44,10 @@ class Painting:
             self.paint_logic_object(obj)
 
         self.paint_levers()
-        self.game_config.screen.blit(self.main_surf, self.game_config.schema_module_location)
+        self.game_config.screen.blit(
+            self.main_surf,
+            self.game_config.schema_module_location
+        )
 
     def paint_logic_object(self, obj):
 
@@ -61,33 +64,50 @@ class Painting:
             case "and":
                 self.paint_and(obj["x"], obj["y"])
             case _:
-                # surf = pygame.Surface((self.game_config.size_logic_x, self.game_config.size_logic_y))
-                # surf.fill((200, 200, 200))
-                # self.main_surf.blit(surf, (obj["x"] * self.vw, obj["y"] * self.vh))
                 pass
 
     def paint_logic_wire(self, obj, next_id):
         # paint line
-        if next_id != FALSE_ID:
+        if next_id == FALSE_ID:
+            return
             # start_pos = (obj["x"] * self.vw, obj["y"] * self.vh)
-            next_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
-            next_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
-            start_pos = (obj["x"] * self.vw + self.game_config.size_logic_x / 2, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
-            end_pos = (next_x * self.vw + self.game_config.size_logic_x / 2, next_y * self.vh + self.game_config.size_logic_y / 2)
-            if self.game_config.level_config["logic_objects"][str(next_id)]["type"] in ["and", "or"]:
-                end_pos = (next_x * self.vw, start_pos[1])
-            if obj["result_signal"]:
-                color = COLOR_WIRE_ON
-            else:
-                color = COLOR_WIRE_OFF
-            pygame.draw.line(self.main_surf, color, start_pos, end_pos, WIRE_WIDTH)
-            # print(obj["x"], obj["y"], next_x, next_y)
-    
+        next_x = self.logic_objects[str(next_id)]["x"]
+        next_y = self.logic_objects[str(next_id)]["y"]
+        start_pos = (
+            obj["x"] * self.vw + self.game_config.size_logic_x / 2,
+            obj["y"] * self.vh + self.game_config.size_logic_y / 2
+        )
+        end_pos = (
+            next_x * self.vw + self.game_config.size_logic_x / 2,
+            next_y * self.vh + self.game_config.size_logic_y / 2
+        )
+        if self.logic_objects[str(next_id)]["type"] in ["and", "or"]:
+            end_pos = (next_x * self.vw, start_pos[1])
+        if obj["result_signal"]:
+            color = COLOR_WIRE_ON
+        else:
+            color = COLOR_WIRE_OFF
+        pygame.draw.line(
+            self.main_surf,
+            color,
+            start_pos,
+            end_pos,
+            WIRE_WIDTH
+        )
+        # print(obj["x"], obj["y"], next_x, next_y)
+
     def paint_wire_from_platforms(self, obj, next_id):
-        start_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
-        start_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
-        start_pos = (start_x * self.vw + self.game_config.size_logic_x / 2, start_y * self.vh + self.game_config.size_logic_y / 2)
-        end_pos = (100 * self.vw, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
+
+        start_x = self.logic_objects[str(next_id)]["x"]
+        start_y = self.logic_objects[str(next_id)]["y"]
+        start_pos = (
+            start_x * self.vw + self.game_config.size_logic_x / 2,
+            start_y * self.vh + self.game_config.size_logic_y / 2
+        )
+        end_pos = (
+            100 * self.vw,
+            obj["y"] * self.vh + self.game_config.size_logic_y / 2
+        )
         if obj["activated"]:
             color = COLOR_WIRE_ON
         else:
@@ -95,34 +115,45 @@ class Painting:
         pygame.draw.line(self.main_surf, color, start_pos, end_pos, WIRE_WIDTH)
 
     def paint_wire_from_levers(self, obj, next_id):
-        end_x = self.game_config.level_config["logic_objects"][str(next_id)]["x"]
-        end_y = self.game_config.level_config["logic_objects"][str(next_id)]["y"]
+        end_x = self.logic_objects[str(next_id)]["x"]
+        end_y = self.logic_objects[str(next_id)]["y"]
         start_pos = (0, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
-        if self.game_config.level_config["logic_objects"][str(next_id)]["type"] in ["and", "or"]:
-            end_pos = (end_x * self.vw + self.game_config.size_logic_x / 2, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
+        if self.logic_objects[str(next_id)]["type"] in ["and", "or"]:
+            end_pos = (
+                end_x * self.vw + self.game_config.size_logic_x / 2,
+                obj["y"] * self.vh + self.game_config.size_logic_y / 2
+            )
         else:
-            end_pos = (end_x * self.vw + self.game_config.size_logic_x / 2, end_y * self.vh + self.game_config.size_logic_y / 2)
-        
+            end_pos = (
+                end_x * self.vw + self.game_config.size_logic_x / 2,
+                end_y * self.vh + self.game_config.size_logic_y / 2
+            )
+
         if obj["activated"]:
             color = COLOR_WIRE_ON
         else:
             color = COLOR_WIRE_OFF
         pygame.draw.line(self.main_surf, color, start_pos, end_pos, WIRE_WIDTH)
 
-
     def paint_levers(self):
         levers = self.game_config.level_config["levers"]
-        surf = pygame.Surface((self.game_config.size_logic_x / 2, self.game_config.size_logic_y / 2))
+        surf = pygame.Surface(
+            (
+                self.game_config.size_logic_x / 2,
+                self.game_config.size_logic_y / 2)
+            )
         surf.fill((150, 0, 200))
 
-
         for object in levers:
-            self.main_surf.blit(surf, (0, object["y"]*self.vh)) 
-
+            self.main_surf.blit(surf, (0, object["y"]*self.vh))
 
     def resize_image(self, image):
-        return pygame.transform.scale(image, (image.get_width() * COEF_RESIZE_IMG, image.get_height() * COEF_RESIZE_IMG))
-
+        return pygame.transform.scale(
+            image,
+            (
+                image.get_width() * COEF_RESIZE_IMG,
+                image.get_height() * COEF_RESIZE_IMG)
+            )
 
 # painting logic object
 

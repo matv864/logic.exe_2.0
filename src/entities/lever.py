@@ -1,4 +1,3 @@
-import time
 import pygame
 
 from ..utils import get_image
@@ -22,21 +21,26 @@ class Player(pygame.sprite.Sprite):
 
         self.y_level_position = 68
 
-
     def resize_image(self, image, sizes=None):
         if sizes:
-            return pygame.transform.scale(image, sizes)    
-        return pygame.transform.scale(image, (image.get_width() * COEF_RESIZE_IMG, image.get_height() * COEF_RESIZE_IMG))
-    
+            return pygame.transform.scale(image, sizes)
+        return pygame.transform.scale(
+            image,
+            (
+                image.get_width() * COEF_RESIZE_IMG,
+                image.get_height() * COEF_RESIZE_IMG
+            )
+        )
+
     def draw(self) -> None:
         self.draw_background()
         self.draw_girl()
         self.draw_levers()
-        
 
-
-        self.game_config.screen.blit(self.main_surf, self.game_config.player_module_location)
-
+        self.game_config.screen.blit(
+            self.main_surf,
+            self.game_config.player_module_location
+        )
 
     def draw_background(self):
         self.main_surf = pygame.Surface(self.game_config.player_module_size)
@@ -48,7 +52,10 @@ class Player(pygame.sprite.Sprite):
     def draw_girl(self):
         girl = get_image("girl.png")
         girl = self.resize_image(girl)
-        self.main_surf.blit(girl, (5 * self.vw, 95 * self.vh - girl.get_height()))
+        self.main_surf.blit(
+            girl,
+            (5 * self.vw, 95 * self.vh - girl.get_height())
+        )
 
     def draw_levers(self):
         now_pos = first_pos = 15
@@ -56,8 +63,10 @@ class Player(pygame.sprite.Sprite):
         now_player_pos = first_pos + 10 * self.player_pos
         player_surf = pygame.Surface((30, 30))
         player_surf.fill((255, 255, 255))
-        self.main_surf.blit(player_surf, (now_player_pos * self.vw, self.y_level_position * self.vh)) 
-
+        self.main_surf.blit(
+            player_surf,
+            (now_player_pos * self.vw, self.y_level_position * self.vh)
+        )
 
         lever_off = get_image("lever_off.png")
         lever_off = self.resize_image(lever_off)
@@ -67,14 +76,16 @@ class Player(pygame.sprite.Sprite):
 
         for object in self.levers:
             if object["activated"]:
-                self.main_surf.blit(lever_off, (now_pos * self.vw, self.y_level_position * self.vh)) 
+                self.main_surf.blit(
+                    lever_off,
+                    (now_pos * self.vw, self.y_level_position * self.vh)
+                )
             else:
-                self.main_surf.blit(lever_on, (now_pos * self.vw, self.y_level_position * self.vh))
+                self.main_surf.blit(
+                    lever_on,
+                    (now_pos * self.vw, self.y_level_position * self.vh)
+                )
             now_pos += 10
-
-        
-
-
 
     # logic part ---------------------------
     def move_left(self):
@@ -84,14 +95,6 @@ class Player(pygame.sprite.Sprite):
         self.player_pos = min(len(self.levers)-1, self.player_pos + 1)
 
     def activate(self):
-        self.levers[self.player_pos]["activated"] = not(self.levers[self.player_pos]["activated"])
+        self.levers[self.player_pos]["activated"] = \
+            not (self.levers[self.player_pos]["activated"])
     # logic part end ------------------------
-    
-
-    '''
-        так, тз этого модуля
-        надо верстать
-        (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh)
-        
-    '''
-

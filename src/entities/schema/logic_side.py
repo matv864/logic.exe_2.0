@@ -1,6 +1,10 @@
 class Logic_side:
     @staticmethod
-    def func_not(logic_objects: dict, now_obj: dict, queue_objects: list) -> bool:
+    def func_not(
+        logic_objects: dict,
+        now_obj: dict,
+        queue_objects: list
+    ) -> bool:
         if len(now_obj["activated"]) == 0:
             now_obj["result_signal"] = True
         elif list(now_obj["activated"].values())[0]:
@@ -9,44 +13,59 @@ class Logic_side:
             now_obj["result_signal"] = True
         obj_to_activate = logic_objects.get(str(now_obj["turn_object"]))
         if obj_to_activate:
-            obj_to_activate["activated"][str(now_obj["turn_object"]) + " " + str(now_obj["x"]) + " " + str(now_obj["y"])] = now_obj["result_signal"]
+            tag = str(now_obj["turn_object"]) + " " + \
+                str(now_obj["x"]) + " " + str(now_obj["y"])
+            obj_to_activate["activated"][tag] = now_obj["result_signal"]
             queue_objects.append(obj_to_activate)
 
-
     @staticmethod
-    def func_splitter(logic_objects: dict, now_obj: dict, queue_objects: list) -> bool:
+    def func_splitter(
+        logic_objects: dict,
+        now_obj: dict,
+        queue_objects: list
+    ) -> bool:
         if len(now_obj["activated"]) == 0:
             now_obj["result_signal"] = False
         elif list(now_obj["activated"].values())[0]:
             now_obj["result_signal"] = True
         else:
             now_obj["result_signal"] = False
-        
+
         for maybe_id in now_obj["turn_object"]:
             obj_to_activate = logic_objects.get(str(maybe_id))
             if obj_to_activate:
-                obj_to_activate["activated"][str(now_obj["turn_object"]) + " " + str(now_obj["x"]) + " " + str(now_obj["y"])] = now_obj["result_signal"]
+                tag = str(now_obj["turn_object"]) + " " + \
+                    str(now_obj["x"]) + " " + str(now_obj["y"])
+                obj_to_activate["activated"][tag] = now_obj["result_signal"]
                 queue_objects.append(obj_to_activate)
 
-
-
     @staticmethod
-    def func_node(logic_objects: dict, now_obj: dict, queue_objects: list) -> bool:
+    def func_node(
+        logic_objects: dict,
+        now_obj: dict,
+        queue_objects: list
+    ) -> bool:
         if len(now_obj["activated"]) == 0:
             now_obj["result_signal"] = False
         elif list(now_obj["activated"].values())[0]:
             now_obj["result_signal"] = True
         else:
             now_obj["result_signal"] = False
-        
+
         obj_to_activate = logic_objects.get(str(now_obj["turn_object"]))
         # print("---", obj_to_activate)
         if obj_to_activate:
-            obj_to_activate["activated"][str(now_obj["turn_object"]) + " " + str(now_obj["x"]) + " " + str(now_obj["y"])] = now_obj["result_signal"]
+            tag = str(now_obj["turn_object"]) + " " + \
+                str(now_obj["x"]) + " " + str(now_obj["y"])
+            obj_to_activate["activated"][tag] = now_obj["result_signal"]
             queue_objects.append(obj_to_activate)
 
     @staticmethod
-    def func_and(logic_objects: dict, now_obj: dict, queue_objects: list) -> bool:
+    def func_and(
+        logic_objects: dict,
+        now_obj: dict,
+        queue_objects: list
+    ) -> bool:
         if len(now_obj["activated"]) != 2:
             # print("BIG ERROR >2 activation 'and'")
             return
@@ -57,11 +76,17 @@ class Logic_side:
         obj_to_activate = logic_objects.get(str(now_obj["turn_object"]))
         # print("---", obj_to_activate)
         if obj_to_activate:
-            obj_to_activate["activated"][str(now_obj["turn_object"]) + " " + str(now_obj["x"]) + " " + str(now_obj["y"])] = now_obj["result_signal"]
+            tag = str(now_obj["turn_object"]) + " " + \
+                str(now_obj["x"]) + " " + str(now_obj["y"])
+            obj_to_activate["activated"][tag] = now_obj["result_signal"]
             queue_objects.append(obj_to_activate)
 
     @staticmethod
-    def func_or(logic_objects: dict, now_obj: dict, queue_objects: list) -> bool:
+    def func_or(
+        logic_objects: dict,
+        now_obj: dict,
+        queue_objects: list
+    ) -> bool:
         if len(now_obj["activated"]) != 2:
             # print("BIG ERROR >2 activation 'or'")
             return
@@ -72,6 +97,7 @@ class Logic_side:
         obj_to_activate = logic_objects.get(str(now_obj["turn_object"]))
         # print("---", obj_to_activate)
         if obj_to_activate:
-            obj_to_activate["activated"][str(now_obj["turn_object"]) + " " + str(now_obj["x"]) + " " + str(now_obj["y"])] = now_obj["result_signal"]
+            tag = str(now_obj["turn_object"]) + " " + \
+                str(now_obj["x"]) + " " + str(now_obj["y"])
+            obj_to_activate["activated"][tag] = now_obj["result_signal"]
             queue_objects.append(obj_to_activate)
-

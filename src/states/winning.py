@@ -1,6 +1,7 @@
 import pygame
 import time
 
+
 class Winning:
     def __init__(self, config):
         self.config = config
@@ -11,8 +12,6 @@ class Winning:
             self.temp_win()
         else:
             self.full_winning()
-
-
 
     def temp_win(self):
         surf = pygame.Surface(self.config.size_of_screen)

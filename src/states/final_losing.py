@@ -1,6 +1,7 @@
 import pygame
 import time
 
+
 class Final_losing:
     def __init__(self, config):
         self.game_config = config
@@ -11,7 +12,3 @@ class Final_losing:
         pygame.display.flip()
         time.sleep(3)
         self.game_config.state = "play"
-
-
-
-

@@ -1,9 +1,9 @@
 import sys
-import time
 import pygame
 
 from pygame.locals import QUIT, K_LEFT, K_RIGHT, K_a, K_d, K_RETURN, K_SPACE
 from ..entities import Background, Player, Score, Schema, Platform
+
 
 class Playing:
     def __init__(self, config):
@@ -21,7 +21,7 @@ class Playing:
                 if event.type == pygame.KEYDOWN:
                     self.handle_lefr_right(event)
                     self.handle_enter_click(event)
-            
+
             if self.config.state != "play":
                 break
 
@@ -30,11 +30,10 @@ class Playing:
             self.schema.draw()
             self.platform.draw()
             self.score.draw()
-            
+
             pygame.display.flip()
 
             clock.tick(self.config.fps)
-
 
     def handle_lefr_right(self, event):
         # print(event.key)
@@ -55,4 +54,3 @@ class Playing:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-

@@ -3,7 +3,8 @@
 
 import pygame
 
-from .states import Playing, Greeting, Losing, Winning, Final_winning, Final_losing
+from .states import Playing, Greeting
+from .states import Losing, Winning, Final_winning, Final_losing
 
 from .utils import GameConfig
 
@@ -21,9 +22,8 @@ class Logic:
         screen = pygame.display.set_mode(self.size_of_screen)
         self.config = GameConfig(
             screen=screen,
-            size_of_screen = self.size_of_screen
+            size_of_screen=self.size_of_screen
         )
-        
 
     def start(self):
         while True:
@@ -40,10 +40,3 @@ class Logic:
                     Winning(self.config)
                 case "final_winning":
                     Final_winning(self.config)
-                
-            
-            
-
-
-
-    

@@ -1,10 +1,10 @@
 import pygame
 import time
 
+
 class Losing:
     def __init__(self, config):
         self.game_config = config
-        
 
         self.game_config.lifes -= 1
 
@@ -14,7 +14,6 @@ class Losing:
         else:
             self.temp_death()
         self.game_config.saving()
-        
 
     def temp_death(self):
         self.main_surf = pygame.Surface(self.game_config.size_of_screen)
@@ -26,8 +25,6 @@ class Losing:
         pygame.display.flip()
         time.sleep(3)
         self.game_config.state = "play"
-
-
 
     def full_losing(self):
         self.game_config.state = "final_losing"

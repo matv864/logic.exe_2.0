@@ -1,7 +1,6 @@
-import pygame
-
 from .logic_side import Logic_side
 from .paint_side import Painting
+
 
 class Schema:
     def __init__(self, config):
@@ -23,8 +22,6 @@ class Schema:
         self.activate_platforms()
         Painting(self.game_config)
 
-
-
     def clear_signals(self):
         for item in self.logic_objects.values():
             item["activated"] = dict()
@@ -34,58 +31,57 @@ class Schema:
         for lever in self.levers:
             obj_to_activate = self.logic_objects.get(str(lever["turn_object"]))
             if obj_to_activate:
-                obj_to_activate["activated"]["lever: " + str(lever["y"])] = lever["activated"]
+                tag = "lever: " + str(lever["y"])
+                obj_to_activate["activated"][tag] = lever["activated"]
 
                 self._queue_objects.append(obj_to_activate)
             else:
                 pass
                 # print("NO THIS ID", lever["turn_object"])
 
-        
-
     def make_schema(self):
         while self._queue_objects:
             obj = self._queue_objects.pop()
             match obj["type"]:
                 case "not":
-                    Logic_side.func_not(self.logic_objects, obj, self._queue_objects)
+                    Logic_side.func_not(
+                        self.logic_objects,
+                        obj,
+                        self._queue_objects
+                    )
                 case "splitter":
-                    Logic_side.func_splitter(self.logic_objects, obj, self._queue_objects)
+                    Logic_side.func_splitter(
+                        self.logic_objects,
+                        obj,
+                        self._queue_objects
+                    )
                 case "node":
-                    Logic_side.func_node(self.logic_objects, obj, self._queue_objects)
+                    Logic_side.func_node(
+                        self.logic_objects,
+                        obj,
+                        self._queue_objects
+                    )
                 case "and":
-                    Logic_side.func_and(self.logic_objects, obj, self._queue_objects)
+                    Logic_side.func_and(
+                        self.logic_objects,
+                        obj,
+                        self._queue_objects
+                    )
                 case "or":
-                    Logic_side.func_or(self.logic_objects, obj, self._queue_objects)
+                    Logic_side.func_or(
+                        self.logic_objects,
+                        obj,
+                        self._queue_objects
+                    )
                 case _:
                     print("no this type", obj["type"])
         #     print(obj)
         # print("\n"*2)
 
-
-                
-
     def activate_platforms(self):
         for platform in self.platforms:
             obj = self.logic_objects.get(str(platform["activate_from_obj_id"]))
             if obj:
-                platform["activated"] = self.logic_objects[str(platform["activate_from_obj_id"])]["result_signal"]
-        #     print(platform)
-        # print("\n\n")
-
-
-
-    '''
-        так, тз этого модуля
-        надо прописать отображение логической схемы и красиво сверстать
-        что нужно ещё для схемы:
-            скомуниздить конфиг левела и отрисовать все элементы
-        (все размеры происходят относительно окна модуля и зависят от размеров этого окна, поэтому просто умножай на vw,vh)
-        
-    '''
-
-
-
-
-
-    
+                id_back_obj = str(platform["activate_from_obj_id"])
+                back_obj = self.logic_objects[id_back_obj]
+                platform["activated"] = back_obj["result_signal"]

@@ -13,15 +13,13 @@ class GameConfig:
         # for score board
         self.set_saving_in_game()
         self.state = "greeting"
-        
+
         self.update_level_config()
-        
 
         # calculate sizes of screen modules
         self.size_of_screen = size_of_screen
         self.calculate_new_values()
         self.set_sizes_logic_objects()
-
 
     def update_level_config(self):
         self.level_config = get_level_config(self.level - 1)
@@ -29,15 +27,13 @@ class GameConfig:
     def update_time(self):
         self.start_time = time.time()
 
-
     def calculate_new_values(self):
         vw = self.size_of_screen[0] / 100
         vh = self.size_of_screen[1] / 100
-        
 
         self.player_module_size = (100 * vw, 30 * vh)
         self.player_module_location = (0 * vw, 0 * vh)
-        
+
         self.schema_module_size = (80 * vw, 70 * vh)
         self.schema_module_location = (0 * vw, 30 * vh)
 
@@ -58,16 +54,9 @@ class GameConfig:
         self.update_level_config()
 
         self.saving()
-        
 
     def saving(self):
         save_result(self)
-    
+
     def set_saving_in_game(self):
         set_saving_result(self)
-    
-    
-
-        
-
-
