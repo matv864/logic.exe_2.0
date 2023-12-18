@@ -2,7 +2,7 @@ import pygame
 import time
 from pathlib import Path
 
-from ..utils import get_image, get_fonts, get_record
+from ..utils import get_image, get_font, get_record
 
 
 START_SCORE = 1000

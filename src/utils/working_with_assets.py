@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 
-def get_fonts(name: str, size: int = 24) -> pygame.font.Font:
+def get_font(name: str, size: int = 24) -> pygame.font.Font:
     path_to_font = Path(Path.cwd() / "assets" / "fonts"/ name) 
     font = pygame.font.Font(path_to_font, size) 
     return font
