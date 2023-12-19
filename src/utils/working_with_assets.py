@@ -1,6 +1,7 @@
 import pygame
 import json
 from pathlib import Path
+from PIL import Image, ImageSequence
 
 
 def get_font(name: str, size: int = 24) -> pygame.font.Font:
@@ -17,10 +18,22 @@ def get_image(name: str, transparency: bool = False) -> pygame.image:
     return image
 
 
-def get_gif(name: str) -> pygame.image:
+def get_gif(name: str, count_frames: int | None = None) -> pygame.image:
     path_to_gif = Path(Path.cwd() / "assets" / "sprites" / name)
-    gif_frames = [pygame.image.load(path_to_gif)]
-    return gif_frames
+    gif = Image.open(path_to_gif)
+    frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
+
+    pygame_surface_list = []
+    for frame in frames:
+        pygame_surface = pygame.image.fromstring(
+            frame.tobytes(),
+            frame.size,
+            frame.mode
+        ).convert_alpha()
+        pygame_surface_list.append(pygame_surface)
+    pygame_surface_list.pop(0)
+
+    return pygame_surface_list
 
 
 def get_audio(name: str) -> pygame.mixer.Sound:

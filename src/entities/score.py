@@ -6,7 +6,7 @@ from ..utils import get_font
 BLACK = (0, 0, 0)
 
 START_SCORE = 1000
-COEF_SCORE_LIFE = 1000
+COEF_SCORE_LIFE = 200
 MAX_LIFES = 3
 
 Y_POS_TEXT = 3
