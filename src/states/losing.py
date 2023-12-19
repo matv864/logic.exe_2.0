@@ -3,7 +3,7 @@ import time
 
 from ..utils import get_font
 
-TEXT_LOSING = "SORRY? Your heart is broken"
+TEXT_LOSING = '''SORRY?  Your heart is broken'''
 
 
 class Losing:
@@ -26,7 +26,7 @@ class Losing:
         self.vh = self.game_config.size_of_screen[1] / 100
         self.vc = min(self.vw, self.vh)
 
-        self.pixel_font = get_font("pixel.ttf", int(self.vc * 4.5))
+        self.pixel_font = get_font("pixel.ttf", int(self.vc * 10))
 
         self.main_surf = pygame.Surface(self.game_config.size_of_screen)
 
@@ -51,7 +51,7 @@ class Losing:
         )
         self.main_surf.blit(
             text_of_losing,
-            (self.vw * 45, self.vh * 45)
+            (20 * self.vw, 35 * self.vh)
         )
 
 # it's state when user lost life

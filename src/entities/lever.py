@@ -15,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.vh = self.game_config.player_module_size[1] / 100
 
         # self.rect = self.image.get_rect()
-        self.girl_gif = get_gif("girl.gif")
+        self.girl_gif = get_gif("right_girl.gif")
         self.frame_girl_index = 0
         self.sped_gif = 5
 
