@@ -6,7 +6,7 @@ from ..utils import get_font
 BLACK = (0, 0, 0)
 
 START_SCORE = 1000
-COEF_SCORE_LIFE = 100
+COEF_SCORE_LIFE = 1000
 MAX_LIFES = 3
 
 Y_POS_TEXT = 3
@@ -42,6 +42,9 @@ class Score:
         self.score = START_SCORE - \
             self.time_from_start - \
             COEF_SCORE_LIFE * lost_lifes
+        if self.score <= 1:
+            self.game_config.state = "losing"
+            self.game_config.lifes = 0
 
     def generate_texts(self):
         self.text_score = f"score: {self.score}"
