@@ -19,8 +19,10 @@ class Winning:
         self.config.screen.blit(surf, (0, 0))
         time.sleep(1)
         pygame.display.update()
-        self.config.saving()
+        self.config.saving_info()
         self.config.state = "play"
 
     def full_winning(self):
         self.config.state = "final_winning"
+
+# it's state when user win level and I check user win only level or all game

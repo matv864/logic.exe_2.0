@@ -9,9 +9,15 @@ class GameConfig:
     def __init__(self, screen: pygame.Surface, size_of_screen: int) -> None:
         self.screen = screen
         self.fps = 30
+        self.level: int
+        self.lifes: int
+        self.start_time: float
+
+        self.size_logic_x: int
+        self.size_logic_y: int
 
         # for score board
-        self.set_saving_in_game()
+        self.set_info_from_saving()
         self.state = "greeting"
 
         self.update_level_config()
@@ -27,6 +33,8 @@ class GameConfig:
     def update_time(self):
         self.start_time = time.time()
 
+    # counting values for modules with vw, vh
+    # this idea is gone from css
     def calculate_new_values(self):
         vw = self.size_of_screen[0] / 100
         vh = self.size_of_screen[1] / 100
@@ -53,10 +61,13 @@ class GameConfig:
         self.start_time = time.time()
         self.update_level_config()
 
-        self.saving()
+        self.saving_info()
 
-    def saving(self):
+    def saving_info(self):
         save_result(self)
 
-    def set_saving_in_game(self):
+    def set_info_from_saving(self):
         set_saving_result(self)
+
+# it's main config of game, where I keeping info about game
+# and some method to work with this info

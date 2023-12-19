@@ -13,7 +13,7 @@ class Losing:
             self.full_losing()
         else:
             self.temp_death()
-        self.game_config.saving()
+        self.game_config.saving_info()
 
     def temp_death(self):
         self.main_surf = pygame.Surface(self.game_config.size_of_screen)
@@ -28,3 +28,6 @@ class Losing:
 
     def full_losing(self):
         self.game_config.state = "final_losing"
+
+# it's state when user lost life
+# and I check user lost only life or all his lifes

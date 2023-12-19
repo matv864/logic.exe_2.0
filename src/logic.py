@@ -1,14 +1,9 @@
-# need to add mouse click how active lever
-# need to add check to win or new level
-
 import pygame
 
 from .states import Playing, Greeting
 from .states import Losing, Winning, Final_winning, Final_losing
 
 from .utils import GameConfig
-
-# from .utils import Window, Level
 
 
 class Logic:
@@ -17,7 +12,6 @@ class Logic:
         pygame.mixer.init()
         pygame.display.set_caption("LOGIC2.EXE")
         self.size_of_screen = (1920, 1080)
-        # window = Window(288, 512)
 
         screen = pygame.display.set_mode(self.size_of_screen)
         self.config = GameConfig(
@@ -40,3 +34,6 @@ class Logic:
                     Winning(self.config)
                 case "final_winning":
                     Final_winning(self.config)
+
+# it's engine, that find state in main config
+# and code choose next instructions by state

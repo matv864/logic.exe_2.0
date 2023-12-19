@@ -54,3 +54,8 @@ class Playing:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+
+# here game cycle in which draw picture
+# in every iteration I:
+#   catch any clicking or taping
+#   call method "draw" in modules

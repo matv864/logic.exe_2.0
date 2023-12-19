@@ -12,3 +12,5 @@ class Final_losing:
         pygame.display.flip()
         time.sleep(3)
         self.game_config.state = "play"
+
+# it's state when user lost all lifes

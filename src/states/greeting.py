@@ -122,3 +122,5 @@ class Greeting:
             shade_color
         )
         self.game_config.screen.blit(transparent_text, self.location_text)
+
+# it's state to show instruction to user

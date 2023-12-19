@@ -42,3 +42,5 @@ def get_level_config(level_id: int) -> dict:
         with level_filename.open() as F:
             level_config = json.load(F)
             return level_config
+
+# methods to work with any files in assets, where all path are wroten here

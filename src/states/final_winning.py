@@ -11,3 +11,5 @@ class Final_winning:
         pygame.display.update()
         time.sleep(1)
         self.config.state = "final_winning"
+
+# it's state when user win all game
