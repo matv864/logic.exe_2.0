@@ -25,7 +25,7 @@ class Winning:
         self.vh = self.game_config.size_of_screen[1] / 100
         self.vc = min(self.vw, self.vh)
 
-        self.pixel_font = get_font("pixel.ttf", int(self.vc * 4.5))
+        self.pixel_font = get_font("pixel.ttf", int(self.vc * 10))
 
         self.main_surf = pygame.Surface(self.game_config.size_of_screen)
 
@@ -51,7 +51,7 @@ class Winning:
         )
         self.main_surf.blit(
             text_of_winning,
-            (self.vw * 45, self.vh * 45)
+            (20 * self.vw, 35 * self.vh)
         )
 
 # it's state when user win level and I check user win only level or all game

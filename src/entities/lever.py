@@ -1,6 +1,6 @@
 import pygame
 
-from ..utils import get_image
+from ..utils import get_image, get_gif
 
 COLOR_BACKGROUND = (106, 117, 111)
 COLOR_MIDLINE = (65, 65, 65)
@@ -15,6 +15,9 @@ class Player(pygame.sprite.Sprite):
         self.vh = self.game_config.player_module_size[1] / 100
 
         # self.rect = self.image.get_rect()
+        self.girl_gif = get_gif("right_girl.gif")
+        self.frame_girl_index = 0
+        self.sped_gif = 5
 
         self.player_pos = 0
         self.levers = self.game_config.level_config["levers"]
@@ -50,12 +53,14 @@ class Player(pygame.sprite.Sprite):
         self.main_surf.blit(midline, (0 * self.vw, 96 * self.vh))
 
     def draw_girl(self):
-        girl = get_image("girl.png")
+        girl = self.girl_gif[self.frame_girl_index // self.sped_gif]
         girl = self.resize_image(girl)
         self.main_surf.blit(
             girl,
             (5 * self.vw, 95 * self.vh - girl.get_height())
         )
+        self.frame_girl_index = (self.frame_girl_index + 1) % \
+            len(self.girl_gif * self.sped_gif)
 
     def draw_levers(self):
         now_pos = first_pos = 15
