@@ -3,7 +3,7 @@
     "levers":
     [
         {
-            "y": 0,
+            "y": 50,
             "activated": false,
             "turn_object": 0
         }
@@ -12,7 +12,7 @@
     "platforms":
     [
         {
-            "y": 0,
+            "y": 50,
             "activated": false,
             "activate_from_obj_id": 5
         }
@@ -23,7 +23,7 @@
         "0": {
             "type": "not",
             "x": 5,
-            "y": 0,
+            "y": 50,
             "turn_object": 1,
             "activated": {},
             "result_signal": false
@@ -31,7 +31,7 @@
         "1": {
             "type": "splitter",
             "x": 15,
-            "y": 0,
+            "y": 50,
             "turn_object": [2, -99],
             "activated": {},
             "result_signal": false
@@ -39,7 +39,7 @@
         "2": {
             "type": "not",
             "x": 30,
-            "y": 0,
+            "y": 50,
             "turn_object": 3,
             "activated": {},
             "result_signal": false
@@ -47,7 +47,7 @@
         "3": {
             "type": "splitter",
             "x": 50,
-            "y": 0,
+            "y": 50,
             "turn_object": [4, -99],
             "activated": {},
             "result_signal": false
@@ -55,7 +55,7 @@
         "4": {
             "type": "not",
             "x": 70,
-            "y": 0,
+            "y": 50,
             "turn_object": 5,
             "activated": {},
             "result_signal": false
@@ -63,7 +63,7 @@
         "5": {
             "type": "splitter",
             "x": 80,
-            "y": 0,
+            "y": 50,
             "turn_object": [-99, -99],
             "activated": {},
             "result_signal": false

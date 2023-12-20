@@ -3,22 +3,22 @@
     "levers":
     [
         {
-            "y": 0,
+            "y": 10,
             "activated": false,
             "turn_object": 0
         },
         {
-            "y": 15,
+            "y": 25,
             "activated": false,
             "turn_object": 7
         },
         {
-            "y": 25,
+            "y": 35,
             "activated": false,
             "turn_object": 8
         },
         {
-            "y": 35,
+            "y": 45,
             "activated": false,
             "turn_object": 8
         },
@@ -42,22 +42,22 @@
     "platforms":
     [
         {
-            "y": 0,
+            "y": 10,
             "activated": false,
             "activate_from_obj_id": 5
         },
         {
-            "y": 15,
+            "y": 25,
             "activated": false,
             "activate_from_obj_id": 7
         },
         {
-            "y": 30,
+            "y": 40,
             "activated": false,
             "activate_from_obj_id": 9
         },
         {
-            "y": 50,
+            "y": 60,
             "activated": false,
             "activate_from_obj_id": 12
         },
@@ -73,7 +73,7 @@
         "0": {
             "type": "not",
             "x": 8,
-            "y": 0,
+            "y": 10,
             "turn_object": 1,
             "activated": {},
             "result_signal": false
@@ -81,7 +81,7 @@
         "1": {
             "type": "splitter",
             "x": 15,
-            "y": 0,
+            "y": 10,
             "turn_object": [2, 6],
             "activated": {},
             "result_signal": false
@@ -89,7 +89,7 @@
         "2": {
             "type": "not",
             "x": 30,
-            "y": 0,
+            "y": 10,
             "turn_object": 3,
             "activated": {},
             "result_signal": false
@@ -97,7 +97,7 @@
         "3": {
             "type": "splitter",
             "x": 50,
-            "y": 0,
+            "y": 10,
             "turn_object": [4, 20],
             "activated": {},
             "result_signal": false
@@ -105,7 +105,7 @@
         "4": {
             "type": "not",
             "x": 70,
-            "y": 0,
+            "y": 10,
             "turn_object": 5,
             "activated": {},
             "result_signal": false
@@ -113,7 +113,7 @@
         "5": {
             "type": "splitter",
             "x": 80,
-            "y": 0,
+            "y": 10,
             "turn_object": [-99, 19],
             "activated": {},
             "result_signal": false
@@ -121,7 +121,7 @@
         "6": {
             "type": "splitter",
             "x": 15,
-            "y": 13,
+            "y": 23,
             "turn_object": [7, 15],
             "activated": {},
             "result_signal": false
@@ -129,7 +129,7 @@
         "7": {
             "type": "or",
             "x": 30,
-            "y": 15,
+            "y": 25,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
@@ -137,7 +137,7 @@
         "8": {
             "type": "and",
             "x": 8,
-            "y": 30,
+            "y": 40,
             "turn_object": 9,
             "activated": {},
             "result_signal": false
@@ -145,7 +145,7 @@
         "9": {
             "type": "and",
             "x": 70,
-            "y": 30,
+            "y": 40,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
@@ -169,7 +169,7 @@
         "12": {
             "type": "or",
             "x": 90,
-            "y": 50,
+            "y": 60,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
@@ -217,7 +217,7 @@
         "18": {
             "type": "node",
             "x": 80,
-            "y": 53,
+            "y": 63,
             "turn_object": 12,
             "activated": {},
             "result_signal": false
@@ -225,7 +225,7 @@
         "19": {
             "type": "node",
             "x": 80,
-            "y": 47,
+            "y": 57,
             "turn_object": 12,
             "activated": {},
             "result_signal": false
@@ -233,7 +233,7 @@
         "20": {
             "type": "node",
             "x": 50,
-            "y": 28,
+            "y": 38,
             "turn_object": 9,
             "activated": {},
             "result_signal": false
