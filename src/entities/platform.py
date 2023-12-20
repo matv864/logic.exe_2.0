@@ -4,8 +4,9 @@ import time
 from ..utils import get_image
 
 COLOR_BACKGROUND = (23, 28, 25)
-TUBE_POSITION = (0, 75)
-SIZE_TUBE = (28, 28)
+X_POS_CRYSTAL = 7
+TUBE_POSITION = (X_POS_CRYSTAL - 5, 80)
+SIZE_TUBE = (23, 28)
 
 
 class Platform:
@@ -16,7 +17,7 @@ class Platform:
 
         self.platforms = self.game_config.level_config["platforms"].copy()
         self.platforms.append({
-            "y": 68,
+            "y": 74,
             "activated": True
         })
         self.platforms.append({
@@ -29,7 +30,6 @@ class Platform:
         self.pos_low_platform = 0
         self.y_low_platform = self.platforms[self.pos_low_platform]["y"]
 
-        self.x_position = 5
         self.y_position = self.platforms[0]["y"]
 
         self.counter_skipped_platforms = 0
@@ -66,7 +66,7 @@ class Platform:
         crystall = self.resize_image(crystall, 50, 50)
         self.main_surf.blit(
             crystall,
-            (self.x_position * self.vw, (self.y_position - 3) * self.vh)
+            (X_POS_CRYSTAL * self.vw, (self.y_position - 3) * self.vh)
         )
 
     def draw_broken_crystall(self):
@@ -74,7 +74,7 @@ class Platform:
         crystall = self.resize_image(crystall, 5, 5)
         self.main_surf.blit(
             crystall,
-            (self.x_position * self.vw, self.y_position * self.vh)
+            (X_POS_CRYSTAL * self.vw, self.y_position * self.vh)
         )
 
     def draw_platforms(self):
