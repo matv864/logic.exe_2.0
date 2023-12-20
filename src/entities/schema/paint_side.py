@@ -8,6 +8,7 @@ COLOR_WIRE_OFF = (190, 80, 80)
 COLOR_WIRE_ON = (133, 222, 126)
 WIRE_WIDTH = 5
 COEF_RESIZE_IMG = 5
+X_POS_LEVER = 10
 
 
 class Painting:
@@ -117,7 +118,10 @@ class Painting:
     def paint_wire_from_levers(self, obj, next_id):
         end_x = self.logic_objects[str(next_id)]["x"]
         end_y = self.logic_objects[str(next_id)]["y"]
-        start_pos = (0, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
+        start_pos = (
+            X_POS_LEVER * self.vw,
+            obj["y"] * self.vh + self.game_config.size_logic_y / 2
+        )
         if self.logic_objects[str(next_id)]["type"] in ["and", "or"]:
             end_pos = (
                 end_x * self.vw + self.game_config.size_logic_x / 2,
@@ -145,7 +149,10 @@ class Painting:
         surf.fill((150, 0, 200))
 
         for object in levers:
-            self.main_surf.blit(surf, (0, object["y"]*self.vh))
+            self.main_surf.blit(
+                surf,
+                (X_POS_LEVER * self.vw, object["y"] * self.vh)
+            )
 
     def resize_image(self, image):
         return pygame.transform.scale(
