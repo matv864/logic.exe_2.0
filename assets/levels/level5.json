@@ -23,17 +23,17 @@
             "turn_object": 8
         },
         {
-            "y": 70,
+            "y": 55,
             "activated": false,
             "turn_object": 10
         },
         {
-            "y": 80,
+            "y": 65,
             "activated": false,
             "turn_object": 13
         },
         {
-            "y": 90,
+            "y": 75,
             "activated": false,
             "turn_object": 13
         }
@@ -57,12 +57,12 @@
             "activate_from_obj_id": 9
         },
         {
-            "y": 60,
+            "y": 52,
             "activated": false,
             "activate_from_obj_id": 12
         },
         {
-            "y": 80,
+            "y": 65,
             "activated": false,
             "activate_from_obj_id": 14
         }
@@ -72,7 +72,7 @@
     "logic_objects":{
         "0": {
             "type": "not",
-            "x": 8,
+            "x": 18,
             "y": 10,
             "turn_object": 1,
             "activated": {},
@@ -80,7 +80,7 @@
         },
         "1": {
             "type": "splitter",
-            "x": 15,
+            "x": 25,
             "y": 10,
             "turn_object": [2, 6],
             "activated": {},
@@ -88,7 +88,7 @@
         },
         "2": {
             "type": "not",
-            "x": 30,
+            "x": 40,
             "y": 10,
             "turn_object": 3,
             "activated": {},
@@ -96,7 +96,7 @@
         },
         "3": {
             "type": "splitter",
-            "x": 50,
+            "x": 60,
             "y": 10,
             "turn_object": [4, 20],
             "activated": {},
@@ -120,7 +120,7 @@
         },
         "6": {
             "type": "splitter",
-            "x": 15,
+            "x": 25,
             "y": 23,
             "turn_object": [7, 15],
             "activated": {},
@@ -128,7 +128,7 @@
         },
         "7": {
             "type": "or",
-            "x": 30,
+            "x": 40,
             "y": 25,
             "turn_object": -99,
             "activated": {},
@@ -136,7 +136,7 @@
         },
         "8": {
             "type": "and",
-            "x": 8,
+            "x": 18,
             "y": 40,
             "turn_object": 9,
             "activated": {},
@@ -152,16 +152,16 @@
         },
         "10": {
             "type": "not",
-            "x": 8,
-            "y": 70,
+            "x": 18,
+            "y": 55,
             "turn_object": 11,
             "activated": {},
             "result_signal": false
         },
         "11": {
             "type": "and",
-            "x": 30,
-            "y": 70,
+            "x": 40,
+            "y": 55,
             "turn_object": 16,
             "activated": {},
             "result_signal": false
@@ -169,15 +169,15 @@
         "12": {
             "type": "or",
             "x": 90,
-            "y": 60,
+            "y": 52,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
         },
         "13": {
             "type": "or",
-            "x": 8,
-            "y": 85,
+            "x": 18,
+            "y": 70,
             "turn_object": 21,
             "activated": {},
             "result_signal": false
@@ -185,31 +185,31 @@
         "14": {
             "type": "not",
             "x": 90,
-            "y": 80,
+            "y": 65,
             "turn_object": -99,
             "activated": {},
             "result_signal": false
         },
         "15": {
             "type": "node",
-            "x": 15,
-            "y": 68,
+            "x": 25,
+            "y": 53,
             "turn_object": 11,
             "activated": {},
             "result_signal": false
         },
         "16": {
             "type": "node",
-            "x": 50,
-            "y": 70,
+            "x": 60,
+            "y": 55,
             "turn_object": 17,
             "activated": {},
             "result_signal": false
         },
         "17": {
             "type": "node",
-            "x": 50,
-            "y": 80,
+            "x": 60,
+            "y": 65,
             "turn_object": 14,
             "activated": {},
             "result_signal": false
@@ -217,7 +217,7 @@
         "18": {
             "type": "node",
             "x": 80,
-            "y": 63,
+            "y": 54,
             "turn_object": 12,
             "activated": {},
             "result_signal": false
@@ -225,14 +225,14 @@
         "19": {
             "type": "node",
             "x": 80,
-            "y": 57,
+            "y": 52,
             "turn_object": 12,
             "activated": {},
             "result_signal": false
         },
         "20": {
             "type": "node",
-            "x": 50,
+            "x": 60,
             "y": 38,
             "turn_object": 9,
             "activated": {},
@@ -241,7 +241,7 @@
         "21": {
             "type": "node",
             "x": 80,
-            "y": 85,
+            "y": 70,
             "turn_object": 18,
             "activated": {},
             "result_signal": false
