@@ -72,7 +72,7 @@
     "logic_objects":{
         "0": {
             "type": "not",
-            "x": 8,
+            "x": 18,
             "y": 10,
             "turn_object": -99,
             "activated": {},
@@ -80,7 +80,7 @@
         },
         "1": {
             "type": "not",
-            "x": 8,
+            "x": 18,
             "y": 25,
             "turn_object": 10,
             "activated": {},
@@ -88,7 +88,7 @@
         },
         "2": {
             "type": "and",
-            "x": 8,
+            "x": 18,
             "y": 40,
             "turn_object": 6,
             "activated": {},
@@ -96,7 +96,7 @@
         },
         "3": {
             "type": "not",
-            "x": 8,
+            "x": 18,
             "y": 55,
             "turn_object": 8,
             "activated": {},
@@ -104,7 +104,7 @@
         },
         "4": {
             "type": "or",
-            "x": 8,
+            "x": 18,
             "y": 70,
             "turn_object": 9,
             "activated": {},
@@ -112,7 +112,7 @@
         },
         "5": {
             "type": "node",
-            "x": 40,
+            "x": 50,
             "y": 27,
             "turn_object": 10,
             "activated": {},
@@ -120,7 +120,7 @@
         },
         "6": {
             "type": "splitter",
-            "x": 40,
+            "x": 50,
             "y": 40,
             "turn_object": [5,11],
             "activated": {},
@@ -144,7 +144,7 @@
         },
         "9": {
             "type": "not",
-            "x": 40,
+            "x": 50,
             "y": 70,
             "turn_object": 12,
             "activated": {},
@@ -152,7 +152,7 @@
         },
         "10": {
             "type": "and",
-            "x": 45,
+            "x": 55,
             "y": 25,
             "turn_object": -99,
             "activated": {},

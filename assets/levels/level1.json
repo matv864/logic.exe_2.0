@@ -14,7 +14,7 @@
         {
             "y": 50,
             "activated": false,
-            "activate_from_obj_id": 5
+            "activate_from_obj_id": 4
         }
     ],
     
@@ -22,7 +22,7 @@
     "logic_objects":{
         "0": {
             "type": "not",
-            "x": 5,
+            "x": 20,
             "y": 50,
             "turn_object": 1,
             "activated": {},
@@ -30,7 +30,7 @@
         },
         "1": {
             "type": "splitter",
-            "x": 15,
+            "x": 35,
             "y": 50,
             "turn_object": [2, -99],
             "activated": {},
@@ -38,7 +38,7 @@
         },
         "2": {
             "type": "not",
-            "x": 30,
+            "x": 45,
             "y": 50,
             "turn_object": 3,
             "activated": {},
@@ -46,7 +46,7 @@
         },
         "3": {
             "type": "splitter",
-            "x": 50,
+            "x": 60,
             "y": 50,
             "turn_object": [4, -99],
             "activated": {},
@@ -56,15 +56,7 @@
             "type": "not",
             "x": 70,
             "y": 50,
-            "turn_object": 5,
-            "activated": {},
-            "result_signal": false
-        },
-        "5": {
-            "type": "splitter",
-            "x": 80,
-            "y": 50,
-            "turn_object": [-99, -99],
+            "turn_object": -99,
             "activated": {},
             "result_signal": false
         }
