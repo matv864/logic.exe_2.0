@@ -36,5 +36,6 @@ def set_saving_result(config: object) -> None:
         config.level = saving["level"]
         config.lifes = saving["lifes"]
         config.start_time = time.time() - saving["time_from_start"]
+        config.update_score()
 
 # methods to getting and saving game info (record, saving)

@@ -5,20 +5,27 @@ from .working_with_assets import get_level_config
 from .working_with_result import save_result, set_saving_result
 
 
+START_SCORE = 1000
+COEF_SCORE_LIFE = 200
+MAX_LIFES = 3
+
+
 class GameConfig:
     def __init__(self, screen: pygame.Surface, size_of_screen: int) -> None:
         self.screen = screen
         self.fps = 30
+
         self.level: int
         self.lifes: int
         self.start_time: float
+        self.score: int
 
         self.size_logic_x: int
         self.size_logic_y: int
 
         # for score board
         self.set_info_from_saving()
-        self.state = "greeting"
+        self.state = "final_winning"
 
         self.update_level_config()
 
@@ -31,7 +38,19 @@ class GameConfig:
         self.level_config = get_level_config(self.level - 1)
 
     def update_time(self):
-        self.start_time = time.time()
+        time_now = time.time()
+        real_time_from_start = time_now - self.start_time
+        self.time_from_start = int(real_time_from_start)
+
+    def update_score(self):
+        self.update_time()
+        lost_lifes = MAX_LIFES - self.lifes
+        self.score = START_SCORE - \
+            self.time_from_start - \
+            COEF_SCORE_LIFE * lost_lifes
+        if self.score <= 1:
+            # self.game_config.state = "losing"
+            self.game_config.lifes = 0
 
     # counting values for modules with vw, vh
     # this idea is gone from css
