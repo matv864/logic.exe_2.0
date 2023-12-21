@@ -4,9 +4,10 @@ import time
 from ..utils import get_image
 
 COLOR_BACKGROUND = (23, 28, 25)
-X_POS_CRYSTAL = 7
+X_POS_CRYSTAL = 33
 TUBE_POSITION = (X_POS_CRYSTAL - 5, 80)
 SIZE_TUBE = (23, 28)
+COEF_RESIZE_IMG = 6.5
 
 
 class Platform:
@@ -25,6 +26,12 @@ class Platform:
             "activated": True
         })
         self.max_crystall_pos = len(self.platforms)
+        self.crystall_is_broken = False
+
+        self.pos_low_platform = 0
+        self.y_low_platform = self.platforms[self.pos_low_platform]["y"]
+
+        self.y_position = self.platforms[0]["y"]
         self.crystall_is_broken = False
 
         self.pos_low_platform = 0
@@ -63,7 +70,8 @@ class Platform:
 
     def draw_crystall(self):
         crystall = get_image("crystall.png")
-        crystall = self.resize_image(crystall, 50, 50)
+        crystall = self.resize_image(crystall)
+        # (50, 50)
         self.main_surf.blit(
             crystall,
             (X_POS_CRYSTAL * self.vw, (self.y_position - 3) * self.vh)
@@ -71,26 +79,24 @@ class Platform:
 
     def draw_broken_crystall(self):
         crystall = get_image("crystall.png")
-        crystall = self.resize_image(crystall, 5, 5)
+        crystall = self.resize_image(crystall, (5, 5))
         self.main_surf.blit(
             crystall,
             (X_POS_CRYSTAL * self.vw, self.y_position * self.vh)
         )
 
     def draw_platforms(self):
-        surf0 = pygame.Surface((15, 15))
-        surf0.fill((100, 0, 0))
-        surf1 = pygame.Surface((100, 15))
-        surf1.fill((0, 100, 0))
+        platform_on = self.resize_image(get_image("platform_on.png"))
+        platform_off = self.resize_image(get_image("platform_off.png"))
         for obj in self.platforms:
             if obj["activated"]:
                 self.main_surf.blit(
-                    surf1,
+                    platform_on,
                     (0, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
                 )
             else:
                 self.main_surf.blit(
-                    surf0,
+                    platform_off,
                     (0, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
                 )
 
@@ -98,9 +104,9 @@ class Platform:
         tube_sprite = get_image("tube.png")
         tube_sprite = self.resize_image(
             tube_sprite,
-            SIZE_TUBE[0] * self.vw,
-            SIZE_TUBE[1] * self.vh
+            (SIZE_TUBE[0] * self.vw, SIZE_TUBE[1] * self.vh)
         )
+
         self.main_surf.blit(
             tube_sprite,
             (TUBE_POSITION[0] * self.vw, TUBE_POSITION[1] * self.vh)
@@ -137,5 +143,13 @@ class Platform:
         # crystall is broken
         self.crystall_is_broken = True
 
-    def resize_image(self, image, x, y):
-        return pygame.transform.scale(image, (x, y))
+    def resize_image(self, image, sizes=None):
+        if sizes:
+            return pygame.transform.scale(image, sizes)
+        return pygame.transform.scale(
+            image,
+            (
+                image.get_width() * COEF_RESIZE_IMG,
+                image.get_height() * COEF_RESIZE_IMG
+            )
+        )
