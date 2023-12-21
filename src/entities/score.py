@@ -29,7 +29,7 @@ class Score:
 
     def generate_texts(self):
         self.text_score = f"score: {self.game_config.score}"
-        self.text_lifes = f"lifes: {self.game_config.lifes}"
+        self.text_lifes = f"crystall: {self.game_config.lifes}"
         self.text_level = f"level: {self.game_config.level}"
 
     def draw(self) -> None:

@@ -66,7 +66,7 @@ class Final_winning:
 
     def generate_text(self):
         self.text_time = f"your time: {self.count_time}"
-        self.text_lifes = f"your time: {self.game_config.lifes}"
+        self.text_lifes = f"your crystall: {self.game_config.lifes}"
         self.text_score = f"your score: {self.game_config.score}"
 
     def draw(self):

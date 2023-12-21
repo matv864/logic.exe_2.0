@@ -25,7 +25,7 @@ class GameConfig:
 
         # for score board
         self.set_info_from_saving()
-        self.state = "final_winning"
+        self.state = "greeting"
 
         self.update_level_config()
 
