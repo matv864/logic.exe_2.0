@@ -22,7 +22,8 @@ class Player(pygame.sprite.Sprite):
         self.player_pos = 0
         self.levers = self.game_config.level_config["levers"]
 
-        self.y_level_position = 68
+        self.y_lever_position = 68
+        self.y_digit_position = 43
 
     def resize_image(self, image, sizes=None):
         if sizes:
@@ -35,10 +36,14 @@ class Player(pygame.sprite.Sprite):
             )
         )
 
+    def get_resized_digit(self, need_digit):
+        path = f"digits_yellow/dig.{need_digit}.png"
+        return self.resize_image(get_image(path))
+
     def draw(self) -> None:
         self.draw_background()
         self.draw_girl()
-        self.draw_levers()
+        self.draw_levers_and_digits()
 
         self.game_config.screen.blit(
             self.main_surf,
@@ -62,16 +67,21 @@ class Player(pygame.sprite.Sprite):
         self.frame_girl_index = (self.frame_girl_index + 1) % \
             len(self.girl_gif * self.sped_gif)
 
-    def draw_levers(self):
-        now_pos = first_pos = 15
-
+    def draw_selected_now(self):
+        first_pos = 15
         now_player_pos = first_pos + 10 * self.player_pos
+
         player_surf = pygame.Surface((30, 30))
         player_surf.fill((255, 255, 255))
         self.main_surf.blit(
             player_surf,
-            (now_player_pos * self.vw, self.y_level_position * self.vh)
+            (now_player_pos * self.vw, self.y_lever_position * self.vh)
         )
+
+    def draw_levers_and_digits(self):
+        self.draw_selected_now()
+
+        now_pos = 15
 
         lever_off = get_image("lever_off.png")
         lever_off = self.resize_image(lever_off)
@@ -79,17 +89,21 @@ class Player(pygame.sprite.Sprite):
         lever_on = get_image("lever_on.png")
         lever_on = self.resize_image(lever_on)
 
-        for object in self.levers:
+        for digit, object in enumerate(self.levers, start=1):
             if object["activated"]:
                 self.main_surf.blit(
                     lever_off,
-                    (now_pos * self.vw, self.y_level_position * self.vh)
+                    (now_pos * self.vw, self.y_lever_position * self.vh)
                 )
             else:
                 self.main_surf.blit(
                     lever_on,
-                    (now_pos * self.vw, self.y_level_position * self.vh)
+                    (now_pos * self.vw, self.y_lever_position * self.vh)
                 )
+            self.main_surf.blit(
+                self.get_resized_digit(digit),
+                (now_pos * self.vw, self.y_digit_position * self.vh)
+            )
             now_pos += 10
 
     # logic part ---------------------------

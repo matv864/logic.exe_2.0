@@ -26,6 +26,21 @@ class Painting:
 
         self.painting()
 
+    def resize_image(self, image, sizes=None):
+        if sizes:
+            return pygame.transform.scale(image, sizes)
+        return pygame.transform.scale(
+            image,
+            (
+                image.get_width() * COEF_RESIZE_IMG,
+                image.get_height() * COEF_RESIZE_IMG
+            )
+        )
+
+    def get_resized_digit(self, need_digit):
+        path = f"digits_yellow/dig.{need_digit}.png"
+        return self.resize_image(get_image(path))
+
     def painting(self):
         for obj in self.game_config.level_config["platforms"]:
             self.paint_wire_from_platforms(obj, obj["activate_from_obj_id"])
@@ -42,6 +57,7 @@ class Painting:
             else:
                 self.paint_logic_wire(obj, obj["turn_object"])
 
+        for obj in self.game_config.level_config["logic_objects"].values():
             self.paint_logic_object(obj)
 
         self.paint_levers()
@@ -141,25 +157,11 @@ class Painting:
 
     def paint_levers(self):
         levers = self.game_config.level_config["levers"]
-        surf = pygame.Surface(
-            (
-                self.game_config.size_logic_x / 2,
-                self.game_config.size_logic_y / 2)
-            )
-        surf.fill((150, 0, 200))
 
-        for object in levers:
+        for digit, object in enumerate(levers, start=1):
             self.main_surf.blit(
-                surf,
+                self.get_resized_digit(digit),
                 (X_POS_LEVER * self.vw, object["y"] * self.vh)
-            )
-
-    def resize_image(self, image):
-        return pygame.transform.scale(
-            image,
-            (
-                image.get_width() * COEF_RESIZE_IMG,
-                image.get_height() * COEF_RESIZE_IMG)
             )
 
 # painting logic object
