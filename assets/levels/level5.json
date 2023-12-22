@@ -15,12 +15,12 @@
         {
             "y": 35,
             "activated": false,
-            "turn_object": 8
+            "turn_object": 22
         },
         {
             "y": 45,
             "activated": false,
-            "turn_object": 8
+            "turn_object": 23
         },
         {
             "y": 55,
@@ -30,12 +30,12 @@
         {
             "y": 65,
             "activated": false,
-            "turn_object": 13
+            "turn_object": 26
         },
         {
             "y": 75,
             "activated": false,
-            "turn_object": 13
+            "turn_object": 27
         }
     ],
 
@@ -243,6 +243,70 @@
             "x": 80,
             "y": 70,
             "turn_object": 18,
+            "activated": {},
+            "result_signal": false
+        },
+        "22": {
+            "type": "node",
+            "x": 12,
+            "y": 35,
+            "turn_object": 24,
+            "activated": {},
+            "result_signal": false
+        },
+        "23": {
+            "type": "node",
+            "x": 12,
+            "y": 45,
+            "turn_object": 25,
+            "activated": {},
+            "result_signal": false
+        },
+        "24": {
+            "type": "node",
+            "x": 12,
+            "y": 38,
+            "turn_object": 8,
+            "activated": {},
+            "result_signal": false
+        },
+        "25": {
+            "type": "node",
+            "x": 12,
+            "y": 42,
+            "turn_object": 8,
+            "activated": {},
+            "result_signal": false
+        },
+        "26": {
+            "type": "node",
+            "x": 12,
+            "y": 65,
+            "turn_object": 28,
+            "activated": {},
+            "result_signal": false
+        },
+        "27": {
+            "type": "node",
+            "x": 12,
+            "y": 75,
+            "turn_object": 29,
+            "activated": {},
+            "result_signal": false
+        },
+        "28": {
+            "type": "node",
+            "x": 12,
+            "y": 68,
+            "turn_object": 13,
+            "activated": {},
+            "result_signal": false
+        },
+        "29": {
+            "type": "node",
+            "x": 12,
+            "y": 72,
+            "turn_object": 13,
             "activated": {},
             "result_signal": false
         }
