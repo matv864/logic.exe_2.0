@@ -23,6 +23,8 @@ class GameConfig:
         self.size_logic_x: int
         self.size_logic_y: int
 
+        self.buttons = dict()
+
         # for score board
         self.set_info_from_saving()
         self.state = "greeting"
@@ -51,6 +53,9 @@ class GameConfig:
         if self.score <= 1:
             # self.game_config.state = "losing"
             self.lifes = 0
+
+    def set_state(self, state):
+        self.state = state
 
     # counting values for modules with vw, vh
     # this idea is gone from css
@@ -87,6 +92,14 @@ class GameConfig:
 
     def set_info_from_saving(self):
         set_saving_result(self)
+
+    def handle_click(self, click_coords):
+        click_x, click_y = click_coords
+        for key_coords, func in self.buttons.items():
+            x1, y1, x2, y2 = key_coords
+            if (x1 <= click_x <= x2 and y1 <= click_y <= y2):
+                func(self)
+
 
 # it's main config of game, where I keeping info about game
 # and some method to work with this info

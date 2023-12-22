@@ -1,7 +1,10 @@
 import pygame
 
-from ..utils import get_image, get_gif
+from ..utils import get_image, get_gif, get_font
 
+TEXT_RESET = '''сбросить результат'''
+
+BLUE = (100, 50, 200)
 COLOR_BACKGROUND = (106, 117, 111)
 COLOR_MIDLINE = (65, 65, 65)
 COEF_RESIZE_IMG = 6
@@ -13,6 +16,9 @@ class Player(pygame.sprite.Sprite):
 
         self.vw = self.game_config.player_module_size[0] / 100
         self.vh = self.game_config.player_module_size[1] / 100
+        self.vc = min(self.vw, self.vh)
+
+        self.pixel_font = get_font("pixel.ttf", int(self.vc * 15))
 
         # self.rect = self.image.get_rect()
         self.girl_gif = get_gif("right_girl.gif")
@@ -44,6 +50,7 @@ class Player(pygame.sprite.Sprite):
         self.draw_background()
         self.draw_girl()
         self.draw_levers_and_digits()
+        self.draw_button_help()
 
         self.game_config.screen.blit(
             self.main_surf,
@@ -65,17 +72,20 @@ class Player(pygame.sprite.Sprite):
             (5 * self.vw, 95 * self.vh - girl.get_height())
         )
         self.frame_girl_index = (self.frame_girl_index + 1) % \
-            len(self.girl_gif * self.sped_gif)
+            (len(self.girl_gif) * self.sped_gif)
 
     def draw_selected_now(self):
         first_pos = 15
         now_player_pos = first_pos + 10 * self.player_pos
 
-        player_surf = pygame.Surface((30, 30))
-        player_surf.fill((255, 255, 255))
+        player_obvodka = get_image("obvodka.png")
+        player_obvodka = self.resize_image(player_obvodka)
         self.main_surf.blit(
-            player_surf,
-            (now_player_pos * self.vw, self.y_lever_position * self.vh)
+            player_obvodka,
+            (
+                (now_player_pos - 0.4) * self.vw,
+                (self.y_lever_position - 1.3) * self.vh
+            )
         )
 
     def draw_levers_and_digits(self):
@@ -106,12 +116,35 @@ class Player(pygame.sprite.Sprite):
             )
             now_pos += 10
 
+    def draw_button_help(self):
+        button = self.pixel_font.render(TEXT_RESET, True, BLUE)
+        surf_to_text = pygame.Surface((int(22 * self.vw), int(20 * self.vh)))
+        surf_to_text.fill(COLOR_MIDLINE)
+        surf_to_text.blit(button, (10, 0))
+        self.main_surf.blit(
+            surf_to_text,
+            (
+                78 * self.vw,
+                77 * self.vh
+            )
+        )
+
+        coords_button = (
+            78 * self.vw,
+            77 * self.vh,
+            (78 + 22) * self.vw,
+            (77 + 20) * self.vh
+        )
+
+        self.game_config.buttons[coords_button] = \
+            lambda config: (config.set_state("greeting"))
+
     # logic part ---------------------------
     def move_left(self):
         self.player_pos = max(0, self.player_pos - 1)
 
     def move_right(self):
-        self.player_pos = min(len(self.levers)-1, self.player_pos + 1)
+        self.player_pos = min(len(self.levers) - 1, self.player_pos + 1)
 
     def activate(self):
         self.levers[self.player_pos]["activated"] = \

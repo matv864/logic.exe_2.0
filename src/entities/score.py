@@ -16,7 +16,6 @@ class Score:
         self.game_config = config
 
         self.time_from_start = 0
-        # print(self.game_config.platform_module_size)
         self.vw = self.game_config.score_module_size[0] / 100
         self.vh = self.game_config.score_module_size[1] / 100
         self.vc = min(self.vh, self.vw)

@@ -18,7 +18,9 @@ class Playing:
         while True:
             for event in pygame.event.get():
                 self.check_quit_event(event)
-                if event.type == pygame.KEYDOWN:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.handle_mouse_click(event)
+                elif event.type == pygame.KEYDOWN:
                     self.handle_lefr_right(event)
                     self.handle_enter_click(event)
 
@@ -35,6 +37,11 @@ class Playing:
 
             clock.tick(self.config.fps)
 
+    def check_quit_event(self, event):
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+
     def handle_lefr_right(self, event):
         # print(event.key)
         # + русские кнопки
@@ -50,10 +57,8 @@ class Playing:
         if event.key in [K_RETURN, K_SPACE]:
             self.player.activate()
 
-    def check_quit_event(self, event):
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
+    def handle_mouse_click(self, event):
+        self.config.handle_click(event.pos)
 
 # here game cycle in which draw picture
 # in every iteration I:
