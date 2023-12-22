@@ -7,8 +7,9 @@ PATH_TO_SAVING = Path(Path.cwd() / "assets" / "game_data" / "saving.txt")
 
 
 def save_record(record_score: int) -> None:
-    with PATH_TO_RECORD.open("w") as F:
-        F.write(str(record_score))
+    if get_record() < record_score:
+        with PATH_TO_RECORD.open("w") as F:
+            F.write(str(record_score))
 
 
 def get_record() -> int:

@@ -50,7 +50,7 @@ class GameConfig:
             COEF_SCORE_LIFE * lost_lifes
         if self.score <= 1:
             # self.game_config.state = "losing"
-            self.game_config.lifes = 0
+            self.lifes = 0
 
     # counting values for modules with vw, vh
     # this idea is gone from css

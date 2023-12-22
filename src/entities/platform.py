@@ -4,10 +4,10 @@ import time
 from ..utils import get_image
 
 COLOR_BACKGROUND = (23, 28, 25)
-X_POS_CRYSTAL = 33
+X_POS_CRYSTAL = 25
 TUBE_POSITION = (X_POS_CRYSTAL - 5, 80)
-SIZE_TUBE = (23, 28)
-COEF_RESIZE_IMG = 6.5
+SIZE_TUBE = (18, 28)
+COEF_RESIZE_IMG = 5
 
 
 class Platform:
@@ -46,6 +46,10 @@ class Platform:
     def draw(self) -> None:
         self.draw_background()
         self.draw_platforms()
+        self.falling_crystall()
+        self.draw_crystall()
+        self.draw_tube()
+
         if self.crystall_is_broken:
             self.draw_broken_crystall()
             self.game_config.state = "losing"
@@ -55,9 +59,6 @@ class Platform:
                 self.game_config.platform_module_location
             )
             return
-        self.falling_crystall()
-        self.draw_crystall()
-        self.draw_tube()
 
         self.game_config.screen.blit(
             self.main_surf,
@@ -74,7 +75,7 @@ class Platform:
         # (50, 50)
         self.main_surf.blit(
             crystall,
-            (X_POS_CRYSTAL * self.vw, (self.y_position - 3) * self.vh)
+            (X_POS_CRYSTAL * self.vw, (self.y_position - 3.5) * self.vh)
         )
 
     def draw_broken_crystall(self):
@@ -92,12 +93,12 @@ class Platform:
             if obj["activated"]:
                 self.main_surf.blit(
                     platform_on,
-                    (0, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
+                    (0, obj["y"] * self.vh + self.game_config.size_logic_y / 3)
                 )
             else:
                 self.main_surf.blit(
                     platform_off,
-                    (0, obj["y"] * self.vh + self.game_config.size_logic_y / 2)
+                    (0, obj["y"] * self.vh + self.game_config.size_logic_y / 3)
                 )
 
     def draw_tube(self):

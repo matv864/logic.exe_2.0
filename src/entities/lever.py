@@ -37,7 +37,7 @@ class Player(pygame.sprite.Sprite):
         )
 
     def get_resized_digit(self, need_digit):
-        path = f"digits_yellow/dig.{need_digit}.png"
+        path = f"digits_green/dig.{need_digit}.png"
         return self.resize_image(get_image(path))
 
     def draw(self) -> None:

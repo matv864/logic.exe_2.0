@@ -7,7 +7,7 @@ from pygame.locals import QUIT
 
 from ..utils import get_image, get_font, get_record
 
-TEXT_TO_CONTINUE = "Tap anything to continue..."
+TEXT_TO_CONTINUE = "нажми где-нибудь..."
 
 
 class Greeting:
@@ -98,7 +98,7 @@ class Greeting:
             self.darkness_record = -100
         self.darkness_record += self.step_of_darkness_record
 
-        text_of_record = f"your record: {self.record_value}"
+        text_of_record = f"текущий рекорд: {self.record_value}"
 
         main_color = int(abs(self.darkness_record) * 2.55)
         shade_color = (main_color, main_color, main_color)

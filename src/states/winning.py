@@ -3,7 +3,7 @@ import time
 
 from ..utils import get_font
 
-TEXT_WINNING = "YEAH, you pass this level"
+TEXT_WINNING = "спасибо тебе, братик"
 
 
 class Winning:
@@ -25,7 +25,7 @@ class Winning:
         self.vh = self.game_config.size_of_screen[1] / 100
         self.vc = min(self.vw, self.vh)
 
-        self.pixel_font = get_font("pixel.ttf", int(self.vc * 10))
+        self.pixel_font = get_font("pixel.ttf", int(self.vc * 15))
 
         self.main_surf = pygame.Surface(self.game_config.size_of_screen)
 
@@ -37,7 +37,7 @@ class Winning:
 
         self.game_config.saving_info()
         self.game_config.state = "play"
-        time.sleep(3)
+        time.sleep(1)
 
     def full_winning(self):
         self.game_config.state = "final_winning"

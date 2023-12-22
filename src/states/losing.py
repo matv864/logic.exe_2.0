@@ -3,7 +3,11 @@ import time
 
 from ..utils import get_font
 
-TEXT_LOSING = '''SORRY?  Your heart is broken'''
+TEXT_LOSING_1 = '''Не разбивай'''
+TEXT_LOSING_2 = '''мой'''
+TEXT_LOSING_3 = '''кристалик'''
+TEXT_LOSING_4 = '''больше...'''
+TEXT_LOSING_5 = '''пожалуйста...'''
 
 
 class Losing:
@@ -35,7 +39,7 @@ class Losing:
 
         self.game_config.screen.blit(self.main_surf, (0, 0))
         pygame.display.flip()
-        time.sleep(3)
+        time.sleep(2)
         self.game_config.update_level_config()
         self.game_config.state = "play"
 
@@ -44,15 +48,25 @@ class Losing:
 
     def draw_screen(self):
         self.main_surf.fill((0, 0, 0))
-        text_of_losing = self.pixel_font.render(
-            TEXT_LOSING,
+
+        texts_of_losing = [self.pixel_font.render(
+            text,
             True,
             (255, 255, 255)
-        )
-        self.main_surf.blit(
-            text_of_losing,
-            (20 * self.vw, 35 * self.vh)
-        )
+        ) for text in [
+            TEXT_LOSING_1,
+            TEXT_LOSING_2,
+            TEXT_LOSING_3,
+            TEXT_LOSING_4,
+            TEXT_LOSING_5
+        ]]
+        y = 20
+        for message in texts_of_losing:
+            self.main_surf.blit(
+                message,
+                (40 * self.vw, y * self.vh)
+            )
+            y += 10
 
 # it's state when user lost life
 # and I check user lost only life or all his lifes

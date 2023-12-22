@@ -28,9 +28,9 @@ class Score:
         self.pixel_font = get_font("pixel.ttf", int(self.vc * 50))
 
     def generate_texts(self):
-        self.text_score = f"score: {self.game_config.score}"
-        self.text_lifes = f"crystall: {self.game_config.lifes}"
-        self.text_level = f"level: {self.game_config.level}"
+        self.text_score = f"счёт: {self.game_config.score}"
+        self.text_lifes = f"кристалл: {self.game_config.lifes}"
+        self.text_level = f"левел: {self.game_config.level}"
 
     def draw(self) -> None:
         shade_color = (255, 255, 255, 255)
